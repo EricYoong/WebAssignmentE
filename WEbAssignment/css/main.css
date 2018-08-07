@@ -1,5 +1,4 @@
   /*        base setting*/
-
   body {
       overflow-x: hidden;
       font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -175,7 +174,7 @@
   .home-social {
       font-family: "montserrat-regular", sans-serif;
       list-style: none;
-      z-index: 12;
+      z-index: 13;
       margin: 0;
       position: absolute;
       top: 50%;
