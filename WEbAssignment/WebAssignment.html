@@ -20,6 +20,7 @@
 
     <style type="text/css">
         /*        base setting*/
+
         body {
             overflow-x: hidden;
             font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -53,6 +54,15 @@
             padding-top: 150px;
             height: 100%;
             width: 100%;
+        }
+
+        .logo{
+            width: 50px;
+            height: 100%px;
+        }
+
+        .navbar-brand{
+            padding: 0;
         }
 
         /*        Black overlay for the intro*/
@@ -136,6 +146,7 @@
             color: #fff;
             position: absolute;
             z-index: 12;
+            top: 20%;
             left: 7%;
             width: 100%;
             text-align: left;
@@ -164,7 +175,7 @@
 
         .home-content h1 {
             font-family: "montserrat-medium", sans-serif;
-            font-size: 6.3rem;
+            font-size: 3.3rem;
             line-height: 1.333;
             margin-top: 0;
             color: #FFFFFF;
@@ -173,6 +184,83 @@
         .home-content__main {
             padding-top: 100px;
             position: relative;
+        }
+
+        /* -------------------------------------------------------------------
+ * ## home social
+ * ------------------------------------------------------------------- */
+
+        .home-social {
+            font-family: "montserrat-regular", sans-serif;
+            list-style: none;
+            z-index: 12;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            right: 5.4rem;
+            -webkit-transform: translate3d(0, -50%, 0);
+            -ms-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
+        }
+
+        .home-social a {
+            color: white;
+            -webkit-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .home-social li {
+            position: relative;
+            padding: .9rem 0;
+        }
+
+        .home-social li a {
+            display: block;
+            width: 33px;
+            height: 33px;
+        }
+
+        .home-social i,
+        .home-social span {
+            position: absolute;
+            top: 0;
+            line-height: 33px;
+            -webkit-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .home-social i {
+            font-size: 14px;
+            right: 0;
+            text-align: center;
+            display: inline-block;
+            width: 33px;
+            height: 33px;
+            line-height: calc(33px - 4px);
+            border: 2px solid #FFFFFF;
+            border-radius: 50%;
+        }
+
+        .home-social span {
+            color: #39b54a;
+            right: 4.5rem;
+            font-size: 1.3rem;
+            opacity: 0;
+            visibility: hidden;
+            -webkit-transform: scale(0);
+            -ms-transform: scale(0);
+            transform: scale(0);
+            -webkit-transform-origin: 100% 50%;
+            -ms-transform-origin: 100% 50%;
+            transform-origin: 100% 50%;
+        }
+
+        .home-social li:hover span {
+            opacity: 1;
+            visibility: visible;
+            -webkit-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
         }
 
         .row {
@@ -242,13 +330,13 @@
     </style>
 </head>
 
-<body>
+<body id="page_top">
 
     <!--    navbar starter      -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <!--       Navbar brand       -->
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand js-scroll-trigger" href="#page_top"><img class="logo" src="images/logo.jpg"></a>
 
             <!--    Breadcumb button/icon when in mobile display     -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -274,6 +362,10 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#team">Team</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="#">About Us</a>
                     </li>
                 </ul>
@@ -284,24 +376,40 @@
     <!-- Photo slider  -->
     <header>
         <div class="jumbotron">
-            <!--            Black overlay-->
-            <div class="shadow-overlay"></div>
-            <div class="overlay"></div>
-
-            <div class="home-overlay">
-                <div class="home-content">
-                    <div class="row home-content__main">
-                        <h3>Welcome to Glint</h3>
-
-                        <h1>
-                            We are a creative group <br> of people who design <br> influential brands and <br> digital experiences.
-                        </h1>
-                    </div>
-                </div>
-            </div>
-            <!-- end home-content -->
 
             <div id="Carcarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+
+                <!--            Black overlay-->
+                <div class="shadow-overlay"></div>
+                <div class="overlay"></div>
+
+                <div class="home-overlay">
+                    <div class="home-content">
+                        <div class="row home-content__main">
+                            <h3>Welcome to Glint</h3>
+
+                            <h1>
+                                We are a creative group <br> of people who design <br> influential brands and <br> digital experiences.
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- end home-content -->
+
+                <ul class="home-social">
+                    <li>
+                        <a href="https://www.facebook.com/EKLTL-Car-Machanical-Service-Center-576081202855207/?modal=admin_todo_tour"><i class="fa fa-facebook" aria-hidden="true"></i><span>Facebook</span></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/ekltl"><i class="fa fa-twitter" aria-hidden="true"></i><span>Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/ekltl/?hl=en"><i class="fa fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
+                    </li>
+                </ul>
+                <!-- end home-social -->
+
+
                 <div class="carousel-inner" role="listbox">
                     <!-- Slide One - Set the background image for this slide in the line below -->
                     <div class="carousel-item active">
@@ -449,7 +557,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="img/team/1.jpg" alt="">
+                        <img class="mx-auto rounded-circle" src="images/XR.jpg" alt="">
                         <h4>Kay Garland</h4>
                         <p class="text-muted">Lead Designer</p>
                         <ul class="list-inline social-buttons">
@@ -473,7 +581,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="">
+                        <img class="mx-auto rounded-circle" src="images/LZC.jpg" alt="">
                         <h4>Larry Parker</h4>
                         <p class="text-muted">Lead Marketer</p>
                         <ul class="list-inline social-buttons">
