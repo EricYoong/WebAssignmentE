@@ -1,4 +1,8 @@
   /*        base setting*/
+html, body{
+    height: 100%;
+    widows: 100%;
+}
 
   body {
       overflow-x: hidden;
@@ -45,6 +49,45 @@
   .navbar-brand {
       padding: 0;
   }
+
+  /*navbar*/
+
+  #mainNav {
+      background-color: #212529;
+  }
+
+  #mainNav .navbar-toggler {
+      font-size: 12px;
+      right: 0;
+      padding: 13px;
+      text-transform: uppercase;
+      color: white;
+      border: 0;
+      background-color: #fed136;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  #mainNav .navbar-brand.active,
+  #mainNav .navbar-brand:active,
+  #mainNav .navbar-brand:focus,
+  #mainNav .navbar-brand:hover {
+      color: #fec503;
+  }
+
+  #mainNav .navbar-nav .nav-item .nav-link {
+      font-size: 90%;
+      font-weight: 400;
+      padding: 0.75em 0.8em;
+      letter-spacing: 1px;
+      color: white;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  #mainNav .navbar-nav .nav-item .nav-link.active,
+  #mainNav .navbar-nav .nav-item .nav-link:hover {
+      color: #fed136;
+  }
+
 
   /*        Black overlay for the intro*/
 
@@ -127,7 +170,7 @@
       color: #fff;
       position: absolute;
       z-index: 12;
-      top: 20%;
+      top: 15%;
       left: 7%;
       width: 100%;
       text-align: left;
@@ -156,14 +199,14 @@
 
   .home-content h1 {
       font-family: "montserrat-medium", sans-serif;
-      font-size: 3.3rem;
+      font-size: 3rem;
       line-height: 1.333;
       margin-top: 0;
       color: #FFFFFF;
   }
 
   .home-content__main {
-      padding-top: 100px;
+      padding-top: 70px;
       position: relative;
   }
 
@@ -177,7 +220,7 @@
       margin: 0;
       position: absolute;
       top: 50%;
-      right: 5.4rem;
+      right: 7.5rem;
       -webkit-transform: translate3d(0, -50%, 0);
       -ms-transform: translate3d(0, -50%, 0);
       transform: translate3d(0, -50%, 0);
@@ -223,8 +266,9 @@
   }
 
   .home-social span {
-      color: #39b54a;
-      right: 4.5rem;
+      color: yellow;
+      top: .8rem;
+      right: 3.3rem;
       font-size: 1.3rem;
       opacity: 0;
       visibility: hidden;
@@ -243,11 +287,6 @@
       -ms-transform: scale(1);
       transform: scale(1);
   }
-
-
-
-
-
 
   .row {
       width: 94%;
