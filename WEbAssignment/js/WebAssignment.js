@@ -19,7 +19,10 @@
     $('.js-scroll-trigger').click(function () {
         $('.navbar-collapse').collapse('hide');
     });
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/master
 })(jQuery); // End of use strict
