@@ -31,11 +31,15 @@
 
   @media (min-width: 768px) {
       section {
+          height: 100%;
+          width: 100%;
           padding: 150px 0;
       }
   }
 
   section {
+      height: 100%;
+      width: 100%;
       padding-top: 100px;
       padding-bottom: 0;
 
