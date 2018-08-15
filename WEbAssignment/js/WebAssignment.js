@@ -15,22 +15,36 @@
         }
     });
 
-//    $('.Carcarousel')
-//    .on('carousel:create carousel:reload', function() {
-//        var element = $(this),
-//            height = element.innerHeight();
-//
-//        // This shows 1 item at a time.
-//        // Divide `width` to the number of items you want to display,
-//        // eg. `width = width / 3` to display 3 items at a time.
-//        element.carousel('-items').css('width', height + 'px');
-//    })
-//    .jcarousel({
-//        // Your configurations options
-//    });
+    //    $('.Carcarousel')
+    //    .on('carousel:create carousel:reload', function() {
+    //        var element = $(this),
+    //            height = element.innerHeight();
+    //
+    //        // This shows 1 item at a time.
+    //        // Divide `width` to the number of items you want to display,
+    //        // eg. `width = width / 3` to display 3 items at a time.
+    //        element.carousel('-items').css('width', height + 'px');
+    //    })
+    //    .jcarousel({
+    //        // Your configurations options
+    //    });
 
     // Closes responsive menu when a scroll trigger link is clicked
     $('.js-scroll-trigger').click(function () {
         $('.navbar-collapse').collapse('hide');
     });
+
+    // Collapse Navbar
+    var navbarCollapse = function () {
+        if ($("#mainNav").offset().top > 100) {
+            $("#mainNav").addClass("navbar-shrink");
+        } else {
+            $("#mainNav").removeClass("navbar-shrink");
+        }
+    };
+    // Collapse now if page is not at top
+    navbarCollapse();
+    // Collapse the navbar when page is scrolled
+    $(window).scroll(navbarCollapse);
+
 })(jQuery); // End of use strict
