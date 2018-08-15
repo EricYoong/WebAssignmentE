@@ -1,6 +1,5 @@
-<script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
+
+//   Initialize Firebase
   var config = {
     apiKey: "AIzaSyDQJKbVvF6Wl7NYeiSWcuhrpnBFo5Qkf-w",
     authDomain: "webassignment666.firebaseapp.com",
@@ -10,4 +9,4 @@
     messagingSenderId: "224824077875"
   };
   firebase.initializeApp(config);
-</script>
+// NEW ADDED
