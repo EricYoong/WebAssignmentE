@@ -200,7 +200,7 @@
       color: #fff;
       position: absolute;
       z-index: 12;
-      top: 15%;
+      top: 25%;
       left: 7%;
       width: 100%;
       text-align: left;
@@ -250,9 +250,8 @@
       margin: 0;
       position: absolute;
       top: 50%;
-      <<<<<<< HEAD right: 8.5rem;
-      =======right: 7.5rem;
-      > > > > > > > origin/master -webkit-transform: translate3d(0, -50%, 0);
+      right: 7.5rem;
+      -webkit-transform: translate3d(0, -50%, 0);
       -ms-transform: translate3d(0, -50%, 0);
       transform: translate3d(0, -50%, 0);
   }
@@ -357,13 +356,13 @@
   /*team*/
 
   .team-member {
-      margin-bottom: 50px;
+      margin-bottom: 25px;
       text-align: center;
   }
 
   .team-member img {
-      width: 225px;
-      height: 225px;
+      width: 215px;
+      height: 215px;
       border: 7px solid #fff;
   }
 
