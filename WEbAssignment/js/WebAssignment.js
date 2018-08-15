@@ -15,6 +15,20 @@
         }
     });
 
+//    $('.Carcarousel')
+//    .on('carousel:create carousel:reload', function() {
+//        var element = $(this),
+//            height = element.innerHeight();
+//
+//        // This shows 1 item at a time.
+//        // Divide `width` to the number of items you want to display,
+//        // eg. `width = width / 3` to display 3 items at a time.
+//        element.carousel('-items').css('width', height + 'px');
+//    })
+//    .jcarousel({
+//        // Your configurations options
+//    });
+
     // Closes responsive menu when a scroll trigger link is clicked
     $('.js-scroll-trigger').click(function () {
         $('.navbar-collapse').collapse('hide');
