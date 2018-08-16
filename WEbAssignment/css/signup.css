@@ -25,13 +25,16 @@ section{
   background-size: cover;
 }
 
-.formSignup {
-  background-color: lightgoldenrodyellow;
+.formSignup{
   width: 100%;
   max-width: 330px;
   height: 71%;
-  padding: 20px;
   margin: 0 auto;
+}
+
+.form-signup {
+  background-color: lightgoldenrodyellow;
+  padding: 20px;
 }
 .form-signup .checkbox {
   font-weight: 400;
