@@ -7,6 +7,9 @@ body {
 body {
     overflow-x: hidden;
     font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-image: url(../images/lambo.jpg);
+    background-size: cover;
+    height: 100%;
 }
 
 p {
@@ -95,11 +98,13 @@ section {
     color: #fed136;
 }
 
-.profile{
-    margin:0,auto;
-    padding: 0;
-    background-color: mintcream;
+.profile {
+    padding-top: 100px;
+    padding-bottom: 945px;
+    background-color: white;
+    height: 100%;
 }
+
 section {
     display: -ms-flexbox;
     display: flex;
@@ -107,11 +112,11 @@ section {
     align-items: center;
     padding-top: 40px;
     padding-bottom: 40px;
-    background-image: url("../images/lambo.jpg");
     background-size: cover;
     height: 100%;
     width: 100%;
 }
-navbar-nav text-uppercase ml-auto{
+
+navbar-nav text-uppercase ml-auto {
     margin-left: 10px;
 }
