@@ -1,0 +1,117 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+p {
+    line-height: 1.75;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+@media (min-width: 768px) {
+    section {
+        width: 100%;
+        padding: 150px 0;
+    }
+
+    section #services {
+        height: 100%;
+    }
+}
+
+section {
+    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 0;
+
+}
+
+/*navbar logo*/
+
+.logo {
+    width: 25%;
+    height: 100%;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+/*navbar*/
+
+#mainNav {
+    background-color: #212529;
+}
+
+#mainNav .navbar-toggler {
+    font-size: 12px;
+    right: 0;
+    padding: 13px;
+    text-transform: uppercase;
+    color: white;
+    border: 0;
+    background-color: #fed136;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#mainNav .navbar-brand {
+    color: #fed136;
+    font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;
+}
+
+#mainNav .navbar-brand.active,
+#mainNav .navbar-brand:active,
+#mainNav .navbar-brand:focus,
+#mainNav .navbar-brand:hover {
+    color: #fec503;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link {
+    font-size: 90%;
+    font-weight: 400;
+    padding: 1.1em 1em;
+    letter-spacing: 1px;
+    color: white;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link.active,
+#mainNav .navbar-nav .nav-item .nav-link:hover {
+    color: #fed136;
+}
+
+.profile{
+    margin-top: 20px;
+    margin-left: 400px;
+    background-color: mintcream;
+}
+section {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-image: url("../images/lambo.jpg");
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+navbar-nav text-uppercase ml-auto{
+    margin-left: 10px;
+}

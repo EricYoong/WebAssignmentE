@@ -20,7 +20,7 @@ section{
   width: 100%;
 }
 
-.signup{
+.signin{
     margin-top: 0.5em;
     color: white;
     text-decoration: none;
@@ -55,4 +55,33 @@ section{
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+.socialbtn{
+    margin-bottom: 10px;
+}
+
+/*Social media button for login authentication*/
+.fb{
+    color: white;
+    background:#1a538a;
+}
+
+.fblogo{
+    margin-right: 15px;
+}
+
+.glogo{
+    margin-right: 15px;
+}
+
+.gg{
+    background: #ffffff;
+}
+
+/*Alert Box*/
+#response{
+    position: fixed;
+    bottom: 5px;
+    right:2%;
+    width: 30%;
 }
