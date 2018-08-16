@@ -22,36 +22,38 @@
 
 <body class="text-center">
     <section id="signup">
-        <form class="form-signup" id="newacc">
-            <img class="mb-4" src="images/logo.jpg" alt="" width="72" height="72">
-            <h1 class="h3 mb-3 font-weight-normal">Create a new account</h1>
-            <div id="response"> </div>
-            <label for="inputEmail" class="sr-only">Name</label>
-            <input type="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="formSignup">
+            <form class="form-signup" id="newacc">
+                <img class="mb-4" src="images/logo.jpg" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Create a new account</h1>
+                <div id="response"> </div>
+                <label for="inputEmail" class="sr-only">Name</label>
+                <input type="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
-            <div class="checkbox mb-3">
-                <label>
+                <div class="checkbox mb-3">
+                    <label>
               <input type="checkbox" value="remember-me"> Remember my account
             </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
-            <hr>
-            <p>Already have an account?
-                <a href="signin.html">Sign in</a></p>
-            <div>
-                <button class="btn btn-lg btn-block fb socialbtn" type="button"><span class="fblogo"><i class="fab fa-facebook-f"></i></span>Sign up with Facebook</button>
-            </div>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                <hr>
+                <p>Already have an account?
+                    <a href="signin.html">Sign in</a></p>
+                <div>
+                    <button class="btn btn-lg btn-block fb socialbtn" type="button"><span class="fblogo"><i class="fab fa-facebook-f"></i></span>Sign up with Facebook</button>
+                </div>
 
-            <div>
-                <button class="btn btn-lg btn-block gg socialbtn" type="button"><span class="glogo"><img src="icon/g-logo.svg"></span>Sign up with Google</button>
+                <div>
+                    <button class="btn btn-lg btn-block gg socialbtn" type="button"><span class="glogo"><img src="icon/g-logo.svg"></span>Sign up with Google</button>
 
-            </div>
-            <p class="mt-5 mb-3 text-muted year">&copy; 2017-2018</p>
-        </form>
+                </div>
+                <p class="mt-5 mb-3 text-muted year">&copy; 2017-2018</p>
+            </form>
+        </div>
     </section>
 
 
@@ -87,7 +89,8 @@
 
                 var name = $("#inputName").val();
                 var email = $("#inputEmail").val();
-                var password = $("#inputPassword").val();æ
+                var password = $("#inputPassword").val();
+                æ
 
                 // Sign Up with email and pass.
                 // [START createwithemail]
@@ -140,7 +143,7 @@
                 });
             });
 
-            $(".gg").click(function(){
+            $(".gg").click(function() {
                 googleAuthentication();
             });
         });
@@ -162,13 +165,13 @@
             // [END authstatelistener]
         }
 
-        function googleAuthentication(){
+        function googleAuthentication() {
             var provider = new firebase.auth.GoogleAuthProvider();
-             provider.addScope(‘profile’);
-             provider.addScope(‘email’);
-             provider.addScope(‘https://www.googleapis.com/auth/plus.me');
-             firebase.auth().signInWithPopup(provider); // Opens a popup window and returns a promise to handle errors.
-        }
+            provider.addScope(‘profile’);
+            provider.addScope(‘email’);
+            provider.addScope(‘https: //www.googleapis.com/auth/plus.me');
+                firebase.auth().signInWithPopup(provider); // Opens a popup window and returns a promise to handle errors.
+            }
     </script>
 
 
