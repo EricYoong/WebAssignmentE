@@ -96,8 +96,8 @@ section {
 }
 
 .profile{
-    margin-top: 20px;
-    margin-left: 400px;
+    margin:0,auto;
+    padding: 0;
     background-color: mintcream;
 }
 section {
