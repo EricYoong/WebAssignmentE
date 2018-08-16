@@ -8,6 +8,13 @@ body {
 }
 
 section{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+#signup{
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -16,16 +23,15 @@ section{
   padding-bottom: 40px;
   background-image: url("../images/f1.jpeg");
   background-size: cover;
-  height: 100%;
-  width: 100%;
 }
 
 .form-signup {
   background-color: lightgoldenrodyellow;
   width: 100%;
   max-width: 330px;
+  height: 71%;
   padding: 20px;
-  margin: auto;
+  margin: 0 auto;
 }
 .form-signup .checkbox {
   font-weight: 400;
@@ -41,7 +47,7 @@ section{
   z-index: 2;
 }
 .form-signup input[type="email"] {
-  margin-bottom: -1px;
+  margin-bottom: 0;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -49,6 +55,10 @@ section{
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.year{
+    margin-top:0 !important;
 }
 
 /*Social media button for login authentication*/
