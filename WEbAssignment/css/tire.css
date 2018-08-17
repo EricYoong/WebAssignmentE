@@ -1,0 +1,237 @@
+/*navbar logo*/
+
+.logo {
+    width: 25%;
+    height: 100%;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+/*navbar*/
+
+#mainNav {
+    background-color: #212529;
+}
+
+#mainNav .navbar-toggler {
+    font-size: 12px;
+    right: 0;
+    padding: 13px;
+    text-transform: uppercase;
+    color: white;
+    border: 0;
+    background-color: #fed136;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#mainNav .navbar-brand {
+    color: #fed136;
+    font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;
+}
+
+#mainNav .navbar-brand.active,
+#mainNav .navbar-brand:active,
+#mainNav .navbar-brand:focus,
+#mainNav .navbar-brand:hover {
+    color: #fec503;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link {
+    font-size: 90%;
+    font-weight: 400;
+    padding: 0.75em 0;
+    letter-spacing: 1px;
+    color: white;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link.active,
+#mainNav .navbar-nav .nav-item .nav-link:hover {
+    color: #fed136;
+}
+
+@media (min-width: 992px) {
+    #mainNav {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
+        -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
+        transition: padding-top 0.3s, padding-bottom 0.3s;
+        border: none;
+        background-color: grey;
+    }
+    #mainNav .navbar-brand {
+        font-size: 1.75em;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+    #mainNav .navbar-nav .nav-item .nav-link {
+        padding: 1.1em 1em !important;
+    }
+    #mainNav.navbar-shrink {
+        padding-top: 0;
+        padding-bottom: 0;
+        background-color: grey;
+    }
+    #mainNav.navbar-shrink .navbar-brand {
+        font-size: 1.25em;
+        padding: 10px 0;
+    }
+}
+
+.dropdown-menu {
+    width: 250px;
+}
+
+.dropdown-submenu {
+    position: relative;
+    width: 250px;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu > a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover > a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+.dropdown-menu multi-level {
+    width: 100px;
+}
+
+.about-area {
+    background-color:aliceblue;
+     padding-top: 100px;
+}
+
+.about-left img {
+    outline: 10px solid #777;
+    outline-offset: -54px;
+    border: 44px solid transparent;
+    border-width: 15px 10px 85px 85px;
+
+}
+.jumbotron{
+    background-color: floralwhite;
+}
+.about-right .lnr {
+    color: #a387ff;
+    font-size: 30px;
+}
+
+.about-right h1 {
+    font-size: 36px;
+    font-weight: 100;
+    color: #a387ff;
+}
+
+.about-right h1 span {
+    font-weight: 600;
+    color: #000;
+}
+
+.about-right p {
+    padding-right: 45px;
+}
+
+.about-right1 img {
+    outline: 10px solid lightblue;
+    outline-offset: -54px;
+    border: 44px solid transparent;
+    border-width: 15px 10px 85px 85px;
+    padding-top: 100px;
+}
+
+.about-left img {
+    outline: 10px solid lightgreen;
+    outline-offset: -54px;
+    border: 44px solid transparent;
+    border-width: 15px 10px 85px 85px;
+    padding-top: 100px;
+}
+
+.about-left1 h1 span {
+    font-weight: 600;
+    color: #000;
+}
+
+.about-left1 .lnr {
+    color: #a387ff;
+    font-size: 30px;
+}
+
+.about-left1 h1 {
+    font-size: 36px;
+    font-weight: 100;
+    color: #a387ff;
+    text-align: right;
+}
+
+.about-left1 p {
+    padding-right: 45px;
+    text-align: right;
+}
+
+.about-left1 h4 {
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .about-right p {
+        padding-right: 0px;
+    }
+
+     .about-left1 p {
+        padding-left: 0px;
+    }
+}
+
+.about-right .learn-btn {
+    color: #000;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.about-right .learn-btn:hover {
+    color: #a387ff;
+}
