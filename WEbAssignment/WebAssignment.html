@@ -51,6 +51,7 @@
                         <a class="nav-link js-scroll-trigger" href="#aboutUs">About Us</a>
                     </li>
 
+                    <!--
                     <li class="nav-item dropdown" id="signedIn">
                         <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-user"></i> Profile</a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-info" aria - labelledby="navbarDropdownMenuLink-4">
@@ -59,13 +60,15 @@
                             </form>
                         </div>
                     </li>
+<<<<<<< HEAD
                     <!--
 
+=======
+-->
+>>>>>>> origin/master
                     <li class="nav-item" id="login">
                         <a class="nav-link js-scroll-trigger" id="loginBtn" href="signin.html">Login</a>
                     </li>
--->
-
                 </ul>
             </div>
         </div>
@@ -316,15 +319,11 @@
                 </div>
             </div>
             <div class="container text-center" data-aos="fade-up">
-
-
-
                 <p class="text-muted">The automotive industry is our past, present, and future. EKLTL is a Malaysian startup company. Our founder and CEO, Eric, grew up spending countless hours in his dad’s repair shop in Ipoh,Malaysia. On the backdrop of rising cost of living and car maintenance being our another biggest expenditure, EKLTL promotes competition for the benefits of users through fast response, best service and most reasonably priced by leveraging on GPS and mobile technology.</p>
 
                 <p>On the demand side, most of the car owners wasted a lot of time waiting and queuing for their car at service center to be service. Other than that, a lot of them also drive around to search for the best price. Many car owners are constantly concerned about being cheated and over-charged unbeknown of the workshop history or its charges for services.</p>
 
                 <p>From the supply side, Car workshops struggles to break-even with some, having an empty workshop without any customers but with high monthly fix overhead cost. Even though the demand and supply for workshop is high, the mismatching of time, convenience and pricing leads to significant inefficiencies. Workshops had to spend thousands if not millions every year in advertisement.</p>
-
             </div>
         </div>
 
@@ -367,6 +366,7 @@
                  </div>
                 <!-- Grid row -->
 
+<<<<<<< HEAD
             </div>
             <!-- Footer Links -->
 
@@ -440,6 +440,72 @@
                                 $(this).remove();
                             });
                     });
+=======
+    <!--    include firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <script src="js/firebase.js"></script>
+
+    <!--    jquery and jquery easing animation-->
+    <script src="jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="jquery-easing/jquery.easing.js" type="text/javascript"></script>
+
+    <!-----AOS JS--->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!--    font awesome icon-->
+    <script src="js/all.min.js" type="text/javascript"></script>
+    <script src="js/fontawesome.min.js" type="text/javascript"></script>
+    <script src="js/v4-shims.min.js" type="text/javascript"></script>
+
+    <!--    Custom javascript-->
+    <script src="js/WebAssignment.js" type="text/javascript"></script>
+
+    <!--mdb-->
+    <script type="text/javascript" src="static/js/mdb.min.js"></script>
+
+    <script>
+        $(function() {
+            initApp();
+
+            $("#logoutForm").submit(function(event) {
+
+                event.preventDefault();
+
+                firebase.auth().signOut().then(function() {
+                    // Sign-out successful.
+                    signedOutProfile();
+
+                    $('<div class="alert alert-primary">' +
+                        '<button type="button" class="close" data-dismiss="alert">' +
+                        '&times;</button> Successful Sign Out.</div>').hide().appendTo('#response').fadeIn(1000);
+
+                    $(".alert").delay(3000).fadeOut(
+                        "normal",
+                        function() {
+                            $(this).remove();
+                        });
+
+                }).catch(function(error) {
+
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // An error happened.
+                    $('<div class="alert alert-primary">' +
+                        '<button type="button" class="close" data-dismiss="alert">' +
+                        '&times;</button>' + errorMessage + '</div>').hide().appendTo('#response').fadeIn(1000);
+
+                    $(".alert").delay(3000).fadeOut(
+                        "normal",
+                        function() {
+                            $(this).remove();
+                        });
+>>>>>>> origin/master
                 });
             });
 
@@ -454,6 +520,7 @@
                         signedInProfile(user);
                     } else {
 
+<<<<<<< HEAD
                     }
                 });
                 // [END authstatelistener]
@@ -475,6 +542,29 @@
             }
 
         </script>
+=======
+                }
+            });
+            // [END authstatelistener]
+        }
+
+        function signedInProfile(user) {
+            //user.display
+            //user.email
+            //user.photoURL
+            //user.uid
+            $('#loginBtn').remove();
+//            $('#login').addClass("dropdown")
+            $('<form id="logoutForm"><button type="submit" class="dropdown-item waves-effect waves-light" id="logout"> Log out </button></form>').appendTo('#login');
+        }
+
+        function signedOutProfile() {
+            $('#login').removeClass("dropdown");
+            $('#navbarDropdownMenuLink-4').remove();
+            $('<a class="nav-link js-scroll-trigger" id="loginBtn" href="signin.html">Login</a>').appendTo('#login');
+        }
+    </script>
+>>>>>>> origin/master
 </body>
 
 </html>
