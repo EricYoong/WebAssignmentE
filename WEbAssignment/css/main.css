@@ -414,12 +414,12 @@
 .section-header {
     text-align: center;
     position: relative;
-    margin-bottom: 3.6rem;
+    margin-bottom: 1.5rem;
     max-width: 960px;
 }
 
 .has-bottom-sep {
-    padding-bottom: 2.1rem;
+    padding-bottom: rem;
     position: relative;
 }
 
