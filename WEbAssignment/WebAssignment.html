@@ -41,58 +41,7 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="services.html">Services</a>
                     </li>
-                    <!--                   <li class="nav-item dropdown">
-                        <a href="services.html" class="nav-link waves-effect waves-light dropdown-toggle" data-toggle="dropdown">Services<b class="caret"></b></a>
 
-                        <ul class="dropdown-menu multi-level">
-
-                            <li class="dropdown-submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tire Related Services</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="services.html">Luxury Car Tire Mounting &amp; Balancing</a></li>
-                                    <li><a href="services.html">Wheel Alignment</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance &amp; Esthetics</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="services.html">Paint Protection</a></li>
-                                    <li><a href="services.html">Car Wraps</a></li>
-                                    <li><a href="services.html">Window Tinting</a></li>
-                                    <li><a href="services.html">Dyno Turning &amp; Testing</a></li>
-                                    <li><a href="services.html">Engine Performance</a></li>
-                                    <li><a href="services.html">Exhaust Systems</a></li>
-                                    <li><a href="services.html">Radar Installation</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown-submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Preventative Maintainence</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="services.html">Car Diagnostics</a></li>
-                                    <li><a href="services.html">Exotic Car Maintainance</a>
-                                        <li><a href="services.html"> Pre-Purchase Inspections (PPI)</a>
-                                        </li>
-                                </ul>
-                                </li>
-
-                                <li class="dropdown-submenu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Repairs &amp; Serivces</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="services.html">Oil Service</a></li>
-                                        <li><a href="services.html">Exotic Car Repair</a></li>
-                                        <li><a href="services.html">Brake Repair</a></li>
-                                        <li><a href="services.html">Suspension &amp; Shocks</a></li>
-                                        <li><a href="services.html">Clutches &amp; Transmission</a></li>
-                                        <li><a href="services.html">Electrical Repairs</a></li>
-                                        <li><a href="services.html" id="#ac">A/C System</a></li>
-                                    </ul>
-                                </li>
-                        </ul>
-
-                        </li>
--->
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#team">Team</a>
                     </li>
@@ -100,7 +49,6 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#aboutUs">About Us</a>
                     </li>
-
 
                     <li class="nav-item dropdown" id="signedIn">
                         <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-user"></i> Profile</a>
@@ -117,7 +65,7 @@
             </div>
         </div>
     </nav>
-    <div id="response"></div>
+
 
     <!-- Photo slider  -->
     <header>
@@ -132,7 +80,6 @@
 
                     <h1>
                         We are a professional<br> and experience group <br>of people who make sure <br> your car run smoothly <br> without any worries.
-
                     </h1>
                 </div>
             </div>
@@ -175,7 +122,6 @@
             </div>
         </div>
     </header>
-
     <!-- Team -->
     <section class="rainy-ashville-gradient" id="team">
         <div class="container">
@@ -377,16 +323,27 @@
     </footer>
     <!-- Footer -->
     <!--preloader-->
-    <div id="preloader">
-        <div id="loader">
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__bar"></div>
-            <div class="loader__ball"></div>
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
         </div>
     </div>
+
+
 
 
     <!--    include firebase-->
@@ -423,6 +380,9 @@
     <!--    Custom javascript-->
     <script src="js/WebAssignment.js" type="text/javascript"></script>
 
+    <!--    sweetalert-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <!--mdb-->
     <script type="text/javascript" src="static/js/mdb.min.js"></script>
 
@@ -430,7 +390,7 @@
         $(function() {
             initApp();
 
-            $("#logout").onclick(function(event) {
+            $("#logout").click(function(event) {
 
                 event.preventDefault();
 
@@ -438,22 +398,28 @@
                     // Sign-out successful.
                     signedOutProfile();
 
-                    $('<div class="alert alert-primary">' +
-                        '<button type="button" class="close" data-dismiss="alert">' +
-                        '&times;</button> Successful Sign Out.</div>').hide().appendTo('#response').fadeIn(1000);
+                    swal({
+                        title: "Success",
+                        text: "You successful logout!",
+                        icon: "success",
+                    });
 
-                    $(".alert").delay(3000).fadeOut(
-                        "normal",
-                        function() {
-                            $(this).remove();
-                        });
+                    //                    $('<div class="alert alert-success">' +
+                    //                        '<button type="button" class="close" data-dismiss="alert">' +
+                    //                        '&times;</button> Successful Sign Out.</div>').hide().appendTo('#response').fadeIn(1000);
+
+                    //                    $(".alert").delay(3000).fadeOut(
+                    //                        "normal",
+                    //                        function() {
+                    //                            $(this).remove();
+                    //                        });
 
                 }).catch(function(error) {
 
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     // An error happened.
-                    $('<div class="alert alert-primary">' +
+                    $('<div class="alert alert-danger">' +
                         '<button type="button" class="close" data-dismiss="alert">' +
                         '&times;</button>' + errorMessage + '</div>').hide().appendTo('#response').fadeIn(1000);
 
@@ -477,7 +443,7 @@
                     // User is signed in.
                     signedInProfile(user);
                 } else {
-
+                    $('#navbarDropdownMenuLink-4').remove();
                 }
             });
             // [END authstatelistener]
@@ -489,8 +455,7 @@
             //user.photoURL
             //user.uid
             $('#loginBtn').remove();
-            //            $('#login').addClass("dropdown")
-            //            $('<form id="logoutForm"><button type="submit" class="dropdown-item waves-effect waves-light" id="logout"> Log out </button></form>').appendTo('#login');
+
         }
 
         function signedOutProfile() {
