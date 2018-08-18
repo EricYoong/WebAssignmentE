@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Web Assignment Car Bengkel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-----AOS---->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Material Design Bootstrap -->
+    <link href="static/css/mdb.min.css" rel="stylesheet">
+
+    <!--   fontAwesome css-->
+    <link rel="stylesheet" href="css/fontawesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/services.css" type="text/css">
+</head>
+
+<body>
+    <!--    navbar starter      -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <!--       Navbar brand       -->
+            <a class="navbar-brand js-scroll-trigger" href="WebAssignment.html"><img class="logo" src="images/logo.jpg"></a>
+
+            <!--    Breadcumb button/icon when in mobile display     -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <!--        Normal view in large screen        -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav text-uppercase ml-auto">
+
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link waves-effect waves-light dropdown-toggle" data-toggle="dropdown">Services<b class="caret"></b></a>
+                        <ul class="dropdown-menu multi-level">
+
+                            <li class="dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tire Related Services</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#lux">Luxury Car Tire Mounting &amp; Balancing</a></li>
+                                    <li><a href="#wheel">Wheel Alignment</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance &amp; Esthetics</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#paint">Paint Protection</a></li>
+                                    <li><a href="#wrap">Car Wraps</a></li>
+                                    <li><a href="#window">Window Tinting</a></li>
+                                    <li><a href="#dyno">Dyno Turning &amp; Testing</a></li>
+                                    <li><a href="#engine">Engine Performance</a></li>
+                                    <li><a href="#exhaust">Exhaust Systems</a></li>
+                                    <li><a href="#radar">Radar Installation</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Preventative Maintainence</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#dia">Car Diagnostics</a></li>
+                                    <li><a href="#exo">Exotic Car Maintainance</a></li>
+                                    <li><a href="#ppi"> Pre-Purchase Inspections (PPI)</a>
+                                </ul>
+                                </li>
+
+                                <li class="dropdown-submenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Repairs &amp; Serivces</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#oil">Oil Service</a></li>
+                                        <li><a href="#repair">Exotic Car Repair</a></li>
+                                        <li><a href="#brake">Brake Repair</a></li>
+                                        <li><a href="#sus">Suspension &amp; Shocks</a></li>
+                                        <li><a href="#clu">Clutches &amp; Transmission</a></li>
+                                        <li><a href="#elec">Electrical Repairs</a></li>
+                                        <li><a href="#ac">A/C System</a></li>
+                                    </ul>
+                                </li>
+                        </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="WebAssignment.html">Team</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="WebAssignment.html">About Us</a>
+                        </li>
+
+
+                        <li class="nav-item dropdown" id="signedIn">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-user"></i> Profile</a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria - labelledby="navbarDropdownMenuLink-4">
+                                <a class="dropdown-item waves-effect waves-light" href="userprofile.html"> My account </a>
+                                <form id="logoutForm"><button type="button" class="dropdown-item waves-effect waves-light" id="logout"> Log out </button>
+                                </form>
+                            </div>
+                        </li>
+
+                        <li class="nav-item" id="login">
+                            <a class="nav-link js-scroll-trigger" id="loginBtn" href="signin.html">Login</a>
+                        </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="response"></div>
+    <!-- Start about Area -->
+    <section class="about-area pt-100 pb-100">
+        <div class="jumbotron" id="lux">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left">
+                    <img class="img-fluid" src="images/mounting.jpg" alt="">
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>Luxury Car Tire Mounting &amp; Balancing</span>
+                    </h1>
+
+                    <h4 style="margin-right: 40%;"> Aftermarket wheels and tires as well as your factory luxury car wheels can be expensive to fix if scuffed or scratched. Using only the best road force technology, we are able to mount and balance all 15” to 32” wheels including 25 series sidewalls without a scratch to your investment. </h4>
+                    <p style="margin-right: 40%;">We offer dismounting and remounting new tires with our state of the art Hunt touches changing machine. Expect perfectly balance wheels and tires without any scuffs. Please ask about our 4 wheel balancing special.</p>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="wheel">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left1">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>Wheel Alignment</span>
+                    </h1>
+
+                    <h4 style="margin-left: 40%;"> Most modern day exotics have such low clearances that using a traditional wheel alignment machine can cause massive damage to bumpers and suspension components. Excell Auto Sport &amp; Service, is one of the few service centers in South Florida to own an operate the Flat Rack Alignment machine. </h4>
+                    <p style="margin-left: 40%;">With no ramps to board, highly lowered performance vehicles can be aligned in minutes with no risk of damage.</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right1">
+                    <img class="img-fluid" src="images/wheel.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="paint">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left">
+                    <img class="img-fluid" src="images/paint.jpg" alt="">
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>Paint Protection-Clear Bra</span>
+                    </h1>
+
+                    <h4 style="margin-right: 40%;">Take care of your exotic car paint with vehicle paint protection also known as clear bra. Protect the front bumper from paint chips and bug splatter. The clear bra for cars won’t change the appearance of your exotic vehicle.</h4>
+                    <p style="margin-right: 40%;">It is extremely durable and once you decide to take it off or replace it, your exotic car will look brand new. This car paint protection film is installed by our film installation expert, Mike.</p>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="wrap">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left1">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>Car Wraps</span>
+                    </h1>
+
+                    <h4 style="margin-left: 40%;"> Change the color of your car without damaging its original paint. There are infinite number of options for exotic vehicle wraps.</h4>
+                    <p style="margin-left: 40%;">Mike, our film installation expert specializes in luxury car wraps. Sports car wraps can be applied to the entire car, or in certain areas. Wrapping your car can change completely the look of your car without the cost of a new paint job. Stop looking, and bring your exotic or luxury vehicle to Excell Auto, the best exotic car wraps Boca Raton has to offer. Stand out, be bold, and unique.</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right1">
+                    <img class="img-fluid" src="images/wrap.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="window">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left">
+                    <img class="img-fluid" src="images/window.jpg" alt="">
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>Window Tinting</span>
+                    </h1>
+
+                    <h4 style="margin-right: 40%;">Luxury car window tinting gives your vehicle a much better appearance and much cooler feeling inside. It not only gives it a better look, but it can also be safer. If you were to get in an accident and the windows were to break this luxury window tint would prevent the glass for breaking in multiple pieces. That's only one of the many reasons why luxury glass tinting is so important.</h4>
+                    <p style="margin-right: 40%;">Even though car window tinting Boca Raton is very common, it is important that you let a professional do the job to have the end result you want.</p>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="dyno">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left1">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>Dyno Tuning &amp; Testing</span>
+                    </h1>
+
+                    <h4 style="margin-left: 40%;"> Put your car to the test in our new dyno system. Our all wheel drive dynamometer allows for performance testing on any make or model. Our performance experts will inspect your car and explain the results of your dyno test.</h4>
+                    <p style="margin-left: 40%;">Dyno testing is available from 10:00am-3:00pm Monday-Friday by appointment only.</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right1">
+                    <img class="img-fluid" src="images/dyno.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="engine">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left">
+                    <img class="img-fluid" src="images/engine.jpg" alt="">
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>Engine Performance</span>
+                    </h1>
+
+                    <h4 style="margin-right: 40%;">We offer maintenance and repairs to your engine including fuel system, ignition system, and air intake system.</h4>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="exhaust">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left1">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>Exhaust Systems</span>
+                    </h1>
+
+                    <h4 style="margin-left: 40%;"> Our performance team will help you find the right sound for your car.</h4>
+                    <p style="margin-left: 40%;">Depending on your choice of sound, we have multiple exhausts systems designed for different exotic vehicles that produce distinct sounds to fit the performance exhaust systems you are looking for.</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right1">
+                    <img class="img-fluid" src="images/exhaust.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="radar">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left">
+                    <img class="img-fluid" src="images/radar.jpg" alt="">
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>Radar Installation</span>
+                    </h1>
+
+                    <h4 style="margin-right: 40%;">Looking for a professional to install a speed radar detector in your car?</h4>
+                    <p style="margin-left: 0%;">Come to Excell Auto and get the K40 radar installation for only RM1499.</p>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="dia">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left1">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>CAR DIAGNOSTICS</span>
+                    </h1>
+
+                    <h4 style="margin-left: 40%;"> It is your right to know what is wrong with your vehicle before authorizing repairs. Excell Auto Sport and Service is the number one choice when it comes to luxury vehicle diagnostics. Having years of experience working on only the finest cars, our team of experts can accurately run a car diagnostic in all makes and models using factory specific equipment.</h4>
+                    <p style="margin-left: 40%;">Whether your car’s check engine light is on our you simply wish to have us do a pre-purchase inspection, you can trust that you are in good hands.</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right1">
+                    <img class="img-fluid" src="images/dianog.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="exo">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left">
+                    <img class="img-fluid" src="images/exotic.jpg" alt="">
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>EXOTIC CAR MAINTENANCE</span>
+                    </h1>
+
+                    <h4 style="margin-right: 40%;">Regular car maintenance is important to keep your exotic car running in perfect conditions. Not doing so may lead to bigger and more expensive problems down the road. We offer the best luxury car maintenance as well as easy scheduling.</h4>
+                    <p style="margin-left: 0%;">Our service shop offers the cheapest luxury car maintenance in Boca Raton on all preventative service.</p>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="ppi">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left1">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>PRE-PURCHASE INSPECTIONS (PPI)</span>
+                    </h1>
+
+                    <h4 style="margin-left: 40%;"> If you are buying a used car, specially if you are investing in a luxury or exotic car, bring it to our team experts and they will inspect it for you with the latest factory specific equipment.</h4>
+                    <p style="margin-left: 40%;">There is no better place to get your pre-purchase vehicle inspection than Excell Auto Sport and Service. With our specialty being luxury and exotic cars, you know you are in good hands. Yearly filter and fluid service included with vehicle inspection.</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right1">
+                    <img class="img-fluid" src="images/ppi.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="oil">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left">
+                    <img class="img-fluid" src="images/oil.jpg" alt="">
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>oil service</span>
+                    </h1>
+
+                    <h4 style="margin-right: 40%;">Preventative maintenance such as oil and fluid changes are important to keep your vehicle running in perfect conditions. Excell Auto Sport and Service is the number one choice for cooling system, power steering system, braking system, transmission system, differential system fluid, filter service and replacement, and oil change in Boca Raton.</h4>
+                    <p style="margin-right: 40%;">Excell Auto offers annual oil change service starting at $399 for luxury and exotic vehicles. Includes oil, oil filter, drain plug seals, inspection & service light reset.</p>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="repair">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left1">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>Exotic Car Repair</span>
+                    </h1>
+
+                    <h4 style="margin-left: 40%;"> Our goal is to provide the best service at the best price. We count with the latest technology and the best team of technicians to service your exotic or luxury car. Excell Auto is the number one choice in Boca Raton when it comes to exotic car repair.</h4>
+                    <p style="margin-left: 40%;">There is a reason why Excell Auto Sport is the best sports car repair shop Boca Raton has.</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right1">
+                    <img class="img-fluid" src="images/repair.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="brake">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left">
+                    <img class="img-fluid" src="images/brake.jpg" alt="">
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>Brake Repair</span>
+                    </h1>
+
+                    <h4 style="margin-right: 40%;">Excell Auto Sport not only has the best technicians with many years of experience servicing exotic and luxury cars, but it also has the latest factory specific equipment to service all luxury and exotic vehicles.</h4>
+                    <p style="margin-right: 40%;">We offer diagnostic and repair for your exotic vehicle braking system including hydraulically controlled parts, brake rotors, pads, sensors, and ABS components. The technicians at Excell Auto know your brake system and will provide the best brake service to your exotic car. We have certified brake technicians who perform every brake repair for any luxury or exotic car.</p>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="sus">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left1">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>SUSPENSION &amp; SHOCKS</span>
+                    </h1>
+
+                    <h4 style="margin-left: 40%;">Your suspension system helps you stay in control while on the road. It is important to stay up to date with the preventative maintenance in your car to prevent any issues with your car suspension.</h4>
+                    <p style="margin-left: 40%;">We not only repair your car suspension shocks, but our performance team will give your exotic car the best performance shocks and struts you need to have more control while racing your car.</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right1">
+                    <img class="img-fluid" src="images/suspension.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="clu">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left">
+                    <img class="img-fluid" src="images/steering.jpg" alt="">
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>CLUTCHES &amp; TRANSMISSION</span>
+                    </h1>
+
+                    <h4 style="margin-right: 40%;">We offer repairs and upgrades to transmission systems, including clutch repair, F1/E-gear, and more. Looking for transmission service for you car?</h4>
+                    <p style="margin-right: 40%;">Bring it to our team of experts who will inspect your vehicle to determine the auto transmission repair needs for your exotic auto, or have our performance team suggest performance upgrades to your exotic auto transmission system.</p>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="elec">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left">
+                    <img class="img-fluid" src="images/electrical.jpg" alt="">
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>ELECTRICAL REPAIRS</span>
+                    </h1>
+
+                    <h4 style="margin-right: 40%;">Get help with troubleshooting and diagnosing your car electrical problems with our Electrical Systems service and Car Electrical System Repair.</h4>
+                    <p style="margin-right: 40%;">Our experts at Excell Auto Sport & Service will troubleshoot your vehicle's electrical system using specialized diagnostic equipment to access your vehicle's data and pinpoint the cause of any electrical problems.</p>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron" id="ac">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-12 col-sm-12 about-left1">
+                    <span class="lnr lnr-sun"></span>
+                    <h1 class="text-uppercase">
+
+                        <span>A/C System</span>
+                    </h1>
+
+                    <h4 style="margin-left: 40%;"> Have a broken car A/C?</h4>
+                    <p style="margin-left: 40%;">Don't sweat it. If your car air conditioner isn't working, Excell Auto Sport &amp; Service automotive professionals are adept at diagnosing a car's A/C repair problem. When you bring your car into Excell Auto Sport & Service, our experienced tire and auto service professionals can perform an A/C Performance Check to diagnose why the car A/C is having a problem and what needs to be repaired. Car A/C problems can stem from many issues, including a Freon leak from a cracked oring seal in the A/C line, a worn out filter / condenser, a loose wire, or excessive heat radiation from the engine. Our technicians will figure out the root of your car's A/C problem.</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 about-right1">
+                    <img class="img-fluid" src="images/ac.jpg" alt="">
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+    <!-- End about Area -->
+    <!--    include firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <script src="js/firebase.js"></script>
+
+    <!--    jquery and jquery easing animation-->
+    <script src="jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="jquery-easing/jquery.easing.js" type="text/javascript"></script>
+
+    <!-----AOS JS--->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!--    font awesome icon-->
+    <script src="js/all.min.js" type="text/javascript"></script>
+    <script src="js/fontawesome.min.js" type="text/javascript"></script>
+    <script src="js/v4-shims.min.js" type="text/javascript"></script>
+
+    <!--    Custom javascript-->
+    <script src="js/WebAssignment.js" type="text/javascript"></script>
+
+    <!--mdb-->
+    <script type="text/javascript" src="static/js/mdb.min.js"></script>
+</body>
