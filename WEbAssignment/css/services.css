@@ -139,9 +139,11 @@
     width: 100px;
 }
 
+/*End navbar*/
+
 .about-area {
-    background-color:aliceblue;
-     padding-top: 100px;
+    background-color: aliceblue;
+    padding-top: 100px;
 }
 
 .about-left img {
@@ -151,9 +153,11 @@
     border-width: 15px 10px 85px 85px;
 
 }
-.jumbotron{
+
+.jumbotron {
     background-color: floralwhite;
 }
+
 .about-right .lnr {
     color: #a387ff;
     font-size: 30px;
@@ -221,7 +225,7 @@
         padding-right: 0px;
     }
 
-     .about-left1 p {
+    .about-left1 p {
         padding-right: 0px;
     }
 }
@@ -234,4 +238,27 @@
 
 .about-right .learn-btn:hover {
     color: #a387ff;
+}
+
+.has-bottom-sep {
+    padding-bottom: rem;
+    position: relative;
+}
+
+.has-bottom-sep::before {
+    content: "";
+    display: inline-block;
+    height: 1px;
+    width: 500px;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    bottom: 0;
+    left: 55%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.has-bottom-sep.::before {
+    background-color: rgba(255, 255, 255, 0.05);
 }
