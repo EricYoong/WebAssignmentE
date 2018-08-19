@@ -84,38 +84,57 @@
                                 <tr>
                                     <td class="info"><b>Service:</b></td>
                                     <td>
-                                        <select id="example-getting-started" multiple="multiple" id="test1">
-                                            <option value="cheese">Cheese</option>
-                                            <option value="tomatoes">Tomatoes</option>
-                                            <option value="mozarella">Mozzarella</option>
-                                            <option value="mushrooms">Mushrooms</option>
-                                            <option value="pepperoni">Pepperoni</option>
-                                            <option value="onions">Onions</option>
+                                        <div>
+                                            Tire Related Services<br/>
+                                            <select class="example-getting-started" multiple="multiple">
+                                            <option value="luxury">Luxury Car Tire Mounting &amp; Balancing</option>
+                                            <option value="wheel">Wheel Alignment</option>
                                         </select>
+                                        </div>
+                                        <br/>
+                                        <div>
+                                            Performance &amp; Esthetics<br/>
+                                            <select class="example-getting-started" multiple="multiple">
+                                            <option value="paint">Paint Protection</option>
+                                            <option value="wraps">Car Wraps</option>
+                                            <option value="tinting">Window Tinting</option>
+                                            <option value="turning">Dyno Turning &amp; Testing</option>
+                                            <option value="engine">Engine Performance</option>
+                                            <option value="exhaust">Exhaust Systems</option>
+                                            <option value="radar">Radar Installation</option>
+                                        </select>
+                                        </div>
+                                        <br/>
+                                        <div>
+                                            Preventative Maintainence<br/>
+                                            <select class="example-getting-started" multiple="multiple">
+                                            <option value="diagnostics">Car Diagnostics</option>
+                                            <option value="maintainence">Exotic Car Maintainance</option>
+                                            <option value="ppi">Pre-Purchase Inspections (PPI)</option>
+                                        </select>
+                                        </div>
+                                        <br/>
+                                        <div>
+                                            Repairs &amp; Serivces<br/>
+                                            <select class="example-getting-started" multiple="multiple">
+                                            <option value="oil">Oil Service</option>
+                                            <option value="paint">Exotic Car Repair</option>
+                                            <option value="wraps">Brake Repair</option>
+                                            <option value="tinting">Suspension &amp; Shocks</option>
+                                            <option value="turning">Clutches &amp; Transmission</option>
+                                            <option value="engine">Electrical Repairs</option>
+                                            <option value="exhaust">A/C System</option>
+                                        </select>
+                                        </div>
 
-                                         <select id="example-getting-started" multiple="multiple" id="test2">
-                                            <option value="cheese">Cheese</option>
-                                            <option value="tomatoes">Tomatoes</option>
-                                            <option value="mozarella">Mozzarella</option>
-                                            <option value="mushrooms">Mushrooms</option>
-                                            <option value="pepperoni">Pepperoni</option>
-                                            <option value="onions">Onions</option>
-                                        </select>
 
-                                         <select id="example-getting-started" multiple="multiple" id="test3">
-                                            <option value="cheese">Cheese</option>
-                                            <option value="tomatoes">Tomatoes</option>
-                                            <option value="mozarella">Mozzarella</option>
-                                            <option value="mushrooms">Mushrooms</option>
-                                            <option value="pepperoni">Pepperoni</option>
-                                            <option value="onions">Onions</option>
-                                        </select>
                                     </td>
+
 
                                     <tr>
                                         <td class="info"><b>Date:</b></td>
 
-                                        <td><input class="form-control" type="datetime" name="date" id="date"></td>
+                                        <td><input class="form-control" type="date" name="date" id="date"></td>
                                     </tr>
 
 
@@ -180,7 +199,7 @@
     <script>
         $(function() {
 
-            $('#example-getting-started').multiselect();
+            $('.example-getting-started').multiselect();
 
 
 

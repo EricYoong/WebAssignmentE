@@ -19,6 +19,16 @@
     <!--   fontAwesome css-->
     <link rel="stylesheet" href="css/fontawesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/main.css" type="text/css">
+
+    <!-- Object Fit polyfill -->
+    <script src="https://unpkg.com/object-fit-images/dist/ofi.min.js"></script>
+
+     <!-- Jarallax -->
+    <link href="css/jarallax.css" rel="stylesheet">
+    <script src="js/jarallax.min.js"></script>
+    <script src="js/jarallax-video.min.js"></script>
+    <script src="js/jarallax-element.min.js"></script>
+
 </head>
 
 <body id="page_top">
@@ -43,7 +53,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="booking.html">Booking</a>
+                        <a class="nav-link js-scroll-trigger" href="booking.html" id="booking">Booking</a>
                     </li>
 
                     <li class="nav-item">
@@ -64,6 +74,10 @@
 
                     <li class="nav-item" id="login">
                         <a class="nav-link js-scroll-trigger" id="loginBtn" href="signin.html">Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#contactUs">Contact us</a>
                     </li>
                 </ul>
             </div>
@@ -125,14 +139,17 @@
                 </div>
             </div>
         </div>
+
     </header>
     <!-- Team -->
+    <div class="jarallax" data-jarallax-video="mp4:video/Ken.mp4"></div>
     <section class="rainy-ashville-gradient" id="team">
+
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading section-header text-uppercase">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">Who in our team?</h3>
+                <div class="col-lg-12">
+                    <h2 class="section-heading section-header text-center text-uppercase">Our Amazing Team</h2>
+                    <h3 class="section-subheading text-muted text-center">Who in our team?</h3>
                 </div>
             </div>
             <div class="row">
@@ -268,11 +285,11 @@
             <div class="row has-bottom-sep">
                 <div class="col-lg-12">
                     <h2 class="section-heading section-header text-uppercase ">About Us</h2>
-                    <h3 class="section-subheading section-header text-muted">Why people choose us?</h3>
+                    <h3 class="section-subheading section-header text-muted" >Why people choose us?</h3>
                 </div>
             </div>
             <div class="container text-center" data-aos="fade-up">
-                <p class="text-muted">The automotive industry is our past, present, and future. EKLTL is a Malaysian startup company. Our founder and CEO, Eric, grew up spending countless hours in his dad’s repair shop in Ipoh,Malaysia. On the backdrop of rising cost of living and car maintenance being our another biggest expenditure, EKLTL promotes competition for the benefits of users through fast response, best service and most reasonably priced by leveraging on GPS and mobile technology.</p>
+                <p>The automotive industry is our past, present, and future. EKLTL is a Malaysian startup company. Our founder and CEO, Eric, grew up spending countless hours in his dad’s repair shop in Ipoh,Malaysia. On the backdrop of rising cost of living and car maintenance being our another biggest expenditure, EKLTL promotes competition for the benefits of users through fast response, best service and most reasonably priced by leveraging on GPS and mobile technology.</p>
 
                 <p>On the demand side, most of the car owners wasted a lot of time waiting and queuing for their car at service center to be service. Other than that, a lot of them also drive around to search for the best price. Many car owners are constantly concerned about being cheated and over-charged unbeknown of the workshop history or its charges for services.</p>
 
@@ -281,51 +298,39 @@
         </div>
 
     </section>
-    <!-- Footer -->
-    <footer class="page-footer font-small blue pt-4">
 
-        <!-- Footer Links -->
-        <div class="container-fluid text-center text-md-left">
+    <section id="contactUs" class="winter-neva-gradient">
 
-            <!-- Grid row -->
-            <div class="row">
+        <div class="row" style="height:550px">
 
-                <!-- Grid column -->
-                <div class="col-md-6 mt-md-0 mt-3">
+            <div class="col-md-6">
+                <h1 class="text-uppercase mt-3 font-weight-bold text-white ">Contact us</h1>
+                <div class="text-white" style="font-size: 16pt; width:750px">
+                    <i class="fas fa-phone mt-3"></i> 012-8888888<br>
+                    <i class="fas fa-fax mt-3"></i> 05-6666666<br>
+                    <i class="fas fa-home mt-3"></i> 89,Jalan Kasawari 6,Taman Bandaraya Impiana, Ipoh.<br>
+                    <i class="fa fa-envelope mt-3" ></i> <a href="mailto:..." id="mail">ekltl@gmail.com</a><br>
 
-                    <!-- Content -->
-                    <h5 class="text-uppercase">contact us</h5>
-                    <div class="col-sm-10 col-md-15">
+                    <div class="my-4">
+                        <ul type="none">
+                            <li class="">
+                                <a href="https://www.facebook.com/EKLTL-Car-Machanical-Service-Center-576081202855207/?modal=admin_todo_tour"><i class="fab fa-facebook-f" aria-hidden="false" style="color: white"></i></a>&emsp;
 
-                        <address>
-              <span aria-hidden="true" class="fa fa-map-marker novi-icon"></span>
-              <a href="#">89,Jalan Kasawari 6,Taman Bandaraya Impiana, Ipoh,Perak</a></address>
-                        <div class="footer-info ">
-                            <div class="info-phone">
-                                <span aria-hidden="true" class="fa fa-phone novi-icon"></span> Phone: 012-8888888</div>
-                            <div class="info-fax">
-                                <span aria-hidden="true" class="fa fa-fax novi-icon"></span> FAX: 05-6666666</div>
-                            <div class="info-email">
-                                <span aria-hidden="true" class="fa fa-envelope novi-icon"></span> Email:
-                                <a href="mailto:#" tabindex="-1">ekltl@gmail.com</a>
-                            </div>
-                        </div>
+                                <a href="https://twitter.com/ekltl"><i class="fab fa-twitter" aria-hidden="true" style="color: white"></i></a>&emsp;
+
+                                <a href="https://www.instagram.com/ekltl/?hl=en"><i class="fab fa-instagram" aria-hidden="true" style="color: white"></i></a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <!-- Grid column -->
-                <div class="mapouter">
-                    <div class="gmap_canvas"><iframe width="200" height="200" id="gmap_canvas" src="https://maps.google.com/maps?q=ipoh%2Ctaman%20bandaraya%20impian&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.pureblack.de">firma webseite erstellen lassen</a></div>
-                </div>
             </div>
-            <!-- Grid row -->
+            <div class="col-md-6 maps" sty>
+                <div class="gmap_canvas"><iframe width="500" height="600" id="gmap_canvas" src="https://maps.google.com/maps?q=ipoh%2Ctaman%20bandaraya%20impian&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+            </div>
         </div>
-        <!-- Footer Links -->
+    </section>
 
-        <!-- Copyright -->
-        <div class="footer-copyright text-center blue py-1">© 2017-2018 Copyright</div>
-        <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
+
     <!--preloader-->
     <div class="loader">
         <div class="loader-inner">
@@ -362,7 +367,6 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
-
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -433,6 +437,7 @@
                     signedInProfile(user);
                 } else {
                     $('#navbarDropdownMenuLink-4').remove();
+                    $('#booking').hide();
                 }
             });
             // [END authstatelistener]
@@ -444,6 +449,7 @@
             //user.photoURL
             //user.uid
             $('#loginBtn').remove();
+            $('#booking').show();
 
         }
 
