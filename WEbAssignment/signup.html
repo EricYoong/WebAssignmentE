@@ -31,7 +31,7 @@
                         <h5 class="card-title text-center">Sign Up</h5>
                         <form class="form-signup" id="newacc">
                             <div class="form-label-group">
-                                <input type="text" id="name" class="form-control" placeholder="Name" required autofocus>
+                                <input type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
                                 <label for="name">Name</label>
                             </div>
 
@@ -49,7 +49,7 @@
                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                                 <label class="custom-control-label" for="customCheck1">Remember password</label>
                             </div>
-                           <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign UP</button>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign UP</button>
                             <p>Already have an account? <a href="signin.html">Sign in</a></p>
                             <p>Don't want to sign up? <a href="WebAssignment.html">Click Here</a></p>
                             <hr class="my-4">
@@ -102,21 +102,29 @@
                 var email = $("#inputEmail").val();
                 var password = $("#inputPassword").val();
 
+
                 // Sign Up with email and pass.
                 // [START createwithemail]
                 firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
+                    var user = firebase.auth().currentUser;
+                    var uid = user.uid;
+                    writeUserData(uid, name, email)
+
                     // Register successful.
-                    $()
+                    swal({
+                        title: "Success",
+                        text: "You successful logout!",
+                        icon: "success",
+                    });
 
-                    $('<div class="alert alert-success">' +
-                        '<button type="button" class="close" data-dismiss="alert">' +
-                        '&times;</button>success</div>').hide().appendTo('#response').fadeIn(1000);
+                    var usersRef = ref.child("users");
+                    usersRef.set({
+                        uid: {
+                            full_name: name,
+                            email: email,
+                        }
+                    });
 
-                    $(".alert").delay(3000).fadeOut(
-                        "normal",
-                        function() {
-                            $(this).remove();
-                        });
                     $("#inputName").val("");
                     $("#inputEmail").val("");
                     $("#inputPassword").val("");
@@ -128,7 +136,7 @@
                     var errorMessage = error.message;
                     // [START_EXCLUDE]
 
-                  if (errorCode === 'auth/wrong-password') {
+                    if (errorCode === 'auth/wrong-password') {
                         swal({
                             title: "Error",
                             text: "You entered a wrong password!",
@@ -205,6 +213,13 @@
                 }
             });
             // [END authstatelistener]
+        }
+
+        function writeUserData(userId, name, email, imageUrl) {
+            firebase.database().ref('users/' + userId).set({
+                username: name,
+                email: email,
+            });
         }
     </script>
 
