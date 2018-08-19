@@ -12,17 +12,16 @@
 /*navbar*/
 
 #mainNav {
-    background-color: #212529;
+    background-color: grey;
 }
 
 #mainNav .navbar-toggler {
-    font-size: 12px;
     right: 0;
     padding: 13px;
     text-transform: uppercase;
     color: white;
-    border: 0;
-    background-color: #fed136;
+    border: 1px solid black;
+    background-color: grey;
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
