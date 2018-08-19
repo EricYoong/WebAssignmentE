@@ -30,31 +30,11 @@
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Sign In</h5>
-                        <form class="form-signin" id="login">
-                            <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
-                                <label for="inputEmail">Email address</label>
-                            </div>
-
-                            <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                                <label for="inputPassword">Password</label>
-                            </div>
-
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Remember password</label>
-                            </div>
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-                            <p>Create a new account? <a href="signup.html">Sign up</a></p>
-                            <p>Don't want to sign in? <a href="WebAssignment.html">Click Here</a></p>
-                            <hr class="my-4">
-                            <button class="btn btn-lg btn-block btn-facebook socialbtn" type="button"><span class="fblogo"><i class="fab fa-facebook-f fa-lg"></i></span>Sign in with Facebook</button>
-                            <button class="btn btn-lg btn-block btn-google socialbtn" type="button"><span class="glogo"><i class="fab fa-google fa-lg"></i></span>Sign up with Google</button>
-                        </form>
+                        <div id="firebaseui-auth-container"></div>
+                        <div id="loader">Loading...</div>
+                        <p>Create a new account? <a href="signup.html">Sign up</a></p>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="response"></div>
@@ -63,6 +43,8 @@
     <!--    include firebase-->
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
     <script src="js/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
 
     <!--    font awesome icon-->
     <script src="js/all.min.js" type="text/javascript"></script>
@@ -73,7 +55,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-     <!--    sweetalert-->
+    <!--    sweetalert-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!--mdb-->
@@ -81,125 +63,41 @@
 
 
     <script>
-        $(function() { //onload
+        $(function() {
+            // Initialize the FirebaseUI Widget using Firebase.
+            var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-            initApp();
-
-            $("#login").submit(function(event) {
-
-                event.preventDefault();
-
-                //login in
-
-                var email = $("#inputEmail").val();
-                var password = $("#inputPassword").val();
-
-                // Sign in with email and pass.
-                // [START authwithemail]
-                firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-                    // Login successful.
-
-
-
-                    $('<div class="alert alert-success">' +
-                        '<button type="button" class="close" data-dismiss="alert">' +
-                        '&times;</button>success</div>').hide().appendTo('#response').fadeIn(1000);
-
-                    $(".alert").delay(3000).fadeOut(
-                        "normal",
-                        function() {
-                            $(this).remove();
-                        });
-
-
-
-                    $("#inputEmail").val("");
-                    $("#inputPassword").val("");
-
-
-                }).catch(function(error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    // [START_EXCLUDE]
-
-                    if (errorCode === 'auth/wrong-password') {
-                        swal({
-                            title: "Error",
-                            text: "You entered a wrong password!",
-                            icon: "error",
-                        });
-
-                    } else {
-                        swal({
-                            title: "Error",
-                            text: errorMessage,
-                            icon: "error",
-                        });
+            var uiConfig = {
+                callbacks: {
+                    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                        // User successfully signed in.
+                        // Return type determines whether we continue the redirect automatically
+                        // or whether we leave that to developer to handle.
+                        return true;
+                    },
+                    uiShown: function() {
+                        // The widget is rendered.
+                        // Hide the loader.
+                        document.getElementById('loader').style.display = 'none';
                     }
-
-                });
-            });
-
-            $(".btn-google").click(function() {
-
-                var provider = new firebase.auth.GoogleAuthProvider();
-
-                provider.addScope('profile');
-                provider.addScope('email');
-                firebase.auth().signInWithPopup(provider).then(function(result) {
-
-                }).catch(function(error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    // The email of the user's account used.
-                    var email = error.email;
-                    // The firebase.auth.AuthCredential type that was used.
-                    var credential = error.credential;
-                    // ...
-                });
-            });
-
-            $(".btn-facebook").click(function() {
-
-                var provider = new firebase.auth.FacebookAuthProvider();
-
-                firebase.auth().signInWithPopup(provider).then(function(result) {
-                    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-                    var token = result.credential.accessToken;
-                    // The signed-in user info.
-                    var user = result.user;
-                    // ...
-                }).catch(function(error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    // The email of the user's account used.
-                    var email = error.email;
-                    // The firebase.auth.AuthCredential type that was used.
-                    var credential = error.credential;
-                    // ...
-                });
-            });
-        });
-
-        function initApp() {
-            //check user keep in cookie
-            // Listening for auth state changes.
-            // [START authstatelistener]
-            firebase.auth().onAuthStateChanged(function(user) {
-
-                if (user) {
-                    // User is signed in.
-                    if (user.displayName == null || user.photoURL == null)
-                        window.location.href = "WebAssignment.html";
-                    else
-                        window.location.href = "WebAssignment.html";
-                }
-            });
-            // [END authstatelistener]
-        }
+                },
+                // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+                signInFlow: 'popup',
+                signInSuccessUrl: 'WebAssignment.html',
+                signInOptions: [
+                    // Leave the lines as is for the providers you want to offer your users.
+                    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                    firebase.auth.FacebookAuthProvider.PROVIDER_ID
+                ],
+                // Terms of service url.
+                tosUrl: 'WebAssignment.html',
+                // Privacy policy url.
+                privacyPolicyUrl: '<your-privacy-policy-url>'
+            };
+            // The start method will wait until the DOM is loaded.
+            ui.start('#firebaseui-auth-container', uiConfig);
+        })()
 
     </script>
 </body>

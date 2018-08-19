@@ -31,11 +31,6 @@
                         <h5 class="card-title text-center">Sign Up</h5>
                         <form class="form-signup" id="newacc">
                             <div class="form-label-group">
-                                <input type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
-                                <label for="name">Name</label>
-                            </div>
-
-                            <div class="form-label-group">
                                 <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
                                 <label for="inputEmail">Email address</label>
                             </div>
@@ -97,8 +92,6 @@
                 event.preventDefault();
 
                 //create new account
-
-                var name = $("#inputName").val();
                 var email = $("#inputEmail").val();
                 var password = $("#inputPassword").val();
 
@@ -106,23 +99,15 @@
                 // Sign Up with email and pass.
                 // [START createwithemail]
                 firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
-                    var user = firebase.auth().currentUser;
-                    var uid = user.uid;
-                    writeUserData(uid, name, email)
 
+                    var user = firebase.auth().currentUser();
+                    console.log(user.email);
                     // Register successful.
+                    console.log(result.user.displayName);
                     swal({
                         title: "Success",
                         text: "You successful logout!",
                         icon: "success",
-                    });
-
-                    var usersRef = ref.child("users");
-                    usersRef.set({
-                        uid: {
-                            full_name: name,
-                            email: email,
-                        }
                     });
 
                     $("#inputName").val("");
@@ -171,7 +156,11 @@
                     var email = error.email;
                     // The firebase.auth.AuthCredential type that was used.
                     var credential = error.credential;
-                    // ...
+                    swal({
+                        title: "Error",
+                        text: errorMessage,
+                        icon: "error",
+                    });
                 });
             });
             $(".btn-facebook").click(function() {
@@ -193,7 +182,11 @@
                     var email = error.email;
                     // The firebase.auth.AuthCredential type that was used.
                     var credential = error.credential;
-                    // ...
+                    swal({
+                        title: "Error",
+                        text: errorMessage,
+                        icon: "error",
+                    });
                 });
             });
         });
@@ -213,13 +206,6 @@
                 }
             });
             // [END authstatelistener]
-        }
-
-        function writeUserData(userId, name, email, imageUrl) {
-            firebase.database().ref('users/' + userId).set({
-                username: name,
-                email: email,
-            });
         }
     </script>
 

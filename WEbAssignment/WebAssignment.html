@@ -358,6 +358,7 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
+
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -403,23 +404,12 @@
                         text: "You successful logout!",
                         icon: "success",
                     });
-
-                    //                    $('<div class="alert alert-success">' +
-                    //                        '<button type="button" class="close" data-dismiss="alert">' +
-                    //                        '&times;</button> Successful Sign Out.</div>').hide().appendTo('#response').fadeIn(1000);
-
-                    //                    $(".alert").delay(3000).fadeOut(
-                    //                        "normal",
-                    //                        function() {
-                    //                            $(this).remove();
-                    //                        });
-
                 }).catch(function(error) {
 
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     // An error happened.
-                      swal({
+                    swal({
                         title: "Error",
                         text: errorMessage,
                         icon: "error",
@@ -429,7 +419,19 @@
             });
         });
 
-
+        function initApp() {
+            //check user keep in cookie
+            // Listening for auth state changes.
+            // [START authstatelistener]
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // User is signed in.
+                    signedInProfile(user);
+                } else {
+                    $('#navbarDropdownMenuLink-4').remove();
+                }
+            });
+            // [END authstatelistener]
         }
 
         function signedInProfile(user) {
@@ -446,6 +448,7 @@
             $('#navbarDropdownMenuLink-4').remove();
             $('<a class="nav-link js-scroll-trigger" id="loginBtn" href="signin.html">Login</a>').appendTo('#login');
         }
+
     </script>
 </body>
 

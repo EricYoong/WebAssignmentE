@@ -115,3 +115,7 @@ section {
 navbar-nav text-uppercase ml-auto {
     margin-left: 10px;
 }
+
+#email_user{
+    margin-bottom: 0;
+}
