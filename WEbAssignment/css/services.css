@@ -450,7 +450,7 @@
     font-size: 90pt;
 }
 
-.demo-table-cell h1{
+.demo-table-cell h1 {
     font-size: 38pt;
     font-weight: 450
 }
@@ -470,4 +470,31 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+@media (max-width: 320px) {
+    .about-left1 h4 {
+        text-align: right;
+        color: black;
+        font-size: 14px;
+    }
+    .about-right h4 {
+        text-align: left;
+        color: black;
+        font-size: 14px;
+    }
+    .about-right p {
+        padding-right: 40px;
+        color: darkslategrey;
+        font-size: 12px;
+    }
+    .about-left1 p {
+        padding-right: 5px;
+        color: darkslategrey;
+        font-size: 12px;
+    }
+
+
+
+
 }
