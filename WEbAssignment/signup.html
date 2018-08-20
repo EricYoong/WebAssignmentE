@@ -170,6 +170,7 @@
                     // The signed-in user info.
                     var user = result.user;
                     var ref = firebase.database().ref('user');
+                    var checking = false;
 
                     ref.once('value')
                         .then(function(snapshot) {
@@ -184,6 +185,14 @@
                                         updataUserdbs(user.uid, user.displayName, user.email, user.photoURL, "google");
                                     }
                                 });
+                                if (checking == false) {
+                                    swal({
+                                        title: "Error",
+                                        text: "existing email used",
+                                        icon: "error",
+                                    });
+                                    window.location.href = "WebAssignment.html";
+                                }
                             }
                         });
                 }).catch(function(error) {
@@ -211,6 +220,7 @@
                     // The signed-in user info.
                     var user = result.user;
                     var ref = firebase.database().ref('user');
+                    var checking = false;
                     // ...
 
                     ref.once('value')
@@ -224,8 +234,17 @@
                                     // ...
                                     if (childData.email != user.email) {
                                         updataUserdbs(user.uid, user.displayName, user.email, user.photoURL, "facebook");
+                                        checking = true;
                                     }
                                 });
+                                if (checking == false) {
+                                    swal({
+                                        title: "Error",
+                                        text: "existing email used",
+                                        icon: "error",
+                                    });
+                                    window.location.href = "WebAssignment.html";
+                                }
                             }
                         });
                 }).catch(function(error) {
@@ -296,6 +315,7 @@
             });
             // [END authstatelistener]
         }
+
     </script>
 
 
