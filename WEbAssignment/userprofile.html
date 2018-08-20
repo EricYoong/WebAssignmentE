@@ -60,14 +60,15 @@
                     <div>
                         <h3>Personal info</h3>
                     </div>
-                    <form class="form-horizontal" role="form" id="editProfile">
+                    <form class="form-horizontal" role="form" id="editProfile" action="POST">
                         <table class="table table-stripped table-bordered">
 
                             <tbody>
                                 <tr>
                                     <td class="info"><b>Username:</b></td>
 
-                                    <td id="userName"><span id="curName"></span><br/><input type="text" id="newName"></td>
+                                    <td>
+                                        <p id="userName"></p><br/><input class="form-control" type="text" name="UserName" id="newName" placeholder="Click to edit!"></td>
 
 
                                 </tr>
@@ -79,32 +80,32 @@
                                     </td>
                                 </tr>
 
-                                <tr>
+                                <tr class="password">
                                     <td class="info"><b>Current password:</b></td>
 
-                                    <td><input class="form-control" type="password" name="currentPassword" id="currPassword"></td>
+                                    <td><input class="form-control" type="password" name="currentPassword" id="currPassword" placeholder="Click to edit!"></td>
                                 </tr>
 
-                                <tr>
+                                <tr class="password">
                                     <td class="info"><b>New Password:</b></td>
 
-                                    <td> <input class="form-control" type="password" name="password" id="newPassword"></td>
+                                    <td> <input class="form-control" type="password" name="password" id="newPassword" placeholder="Click to edit!"></td>
                                 </tr>
 
-                                <tr>
+                                <tr class="password">
                                     <td class="info"><b>Confirm password:</b></td>
 
-                                    <td><input class="form-control" type="password" name="confirmPassword" id="passwordCon"></td>
+                                    <td><input class="form-control" type="password" name="confirmPassword" id="passwordCon" placeholder="Click to edit!"></td>
                                 </tr>
                             </tbody>
                         </table>
-                    </form>
 
-                    <div class="col-md-12 text-center">
-                        <input type="submit" class="btn btn-primary" value="Save Changes">
-                        <span></span>
-                        <input type="reset" class="btn btn-default" value="Cancel">
-                    </div>
+                        <div class="col-md-12 text-center">
+                            <input type="submit" class="btn btn-primary" value="Save Changes">
+                            <span></span>
+                            <input type="reset" class="btn btn-default" value="Cancel">
+                        </div>
+                    </form>
                 </div>
 
                 <!-- right column -->
@@ -113,7 +114,7 @@
                         <img src="//placehold.it/100" class="avatar img-fluid" id="userImg" alt="avatar">
                         <h6>Upload a new photo...</h6>
 
-                        <input type="file" class="form-control" id="userImg">
+                        <input type="file" class="form-control" id="userImg1">
                     </div>
                 </div>
             </div>
@@ -121,6 +122,26 @@
         </div>
     </section>
 
+    <!--preloader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+            <div class="loader-line-wrap">
+                <div class="loader-line"></div>
+            </div>
+        </div>
+    </div>
 
     <!--    include firebase-->
     <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
@@ -134,6 +155,7 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
+
     </script>
 
 
@@ -157,25 +179,97 @@
 
     <script>
         $(function() {
+            var img;
 
             initApp();
+
+            $("input[type=file]").click(function() {
+                $(this).val("");
+            });
+
+            $("input[type=file]").change(function(event) {
+                img = event.target.files[0];
+            });
+
             $("#editProfile").submit(function(event) {
 
                 event.preventDefault();
-
                 var user = firebase.auth().currentUser;
+                var credential;
+                var database = firebase.database().ref('user/' + user.uid);
+                var update;
                 var name = $('#newName').val();
-                var email_chg = $('#newEmail').val();
+                var curPass = $('#currPassword').val();
                 var newPass = $('#newPassword').val();
                 var conPass = $('#passwordCon').val();
 
-                console.log(name);
-                console.log(email_chg);
-                console.log(newPass);
-                console.log(conPass);
+                if (img != null) {
+                    uploadfile(img, user, database);
+                }
 
+                if (name != null && name !== "" && name !== " ") {
+                    user.updateProfile({
+                        displayName: name
+                    }).catch(function(error) {
+                        // An error happened.
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        // [START_EXCLUDE]
+                        swal({
+                            title: "Error",
+                            text: errorMessage,
+                            icon: "error",
+                        });
+                    });
 
+                    update = database.update({
+                        name: name
+                    });
+
+                }
+                // Prompt the user to re-provide their sign-in credentials
+
+                if (newPass === conPass && newPass != null && newPass != "" && newPass != " ") {
+                    user.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(firebase.auth().currentUser.email, curPass)).then(function() {
+
+                        user.updatePassword(newPassword).catch(function(error) {
+                            // An error happened.
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            // The email of the user's account used.
+                            var email = error.email;
+                            // The firebase.auth.AuthCredential type that was used.
+                            var credential = error.credential;
+                            swal({
+                                title: "Error",
+                                text: errorMessage,
+                                icon: "error",
+                            });
+
+                        });
+                    }).catch(function(error) {
+                        // An error happened.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        // The email of the user's account used.
+                        var email = error.email;
+                        // The firebase.auth.AuthCredential type that was used.
+                        var credential = error.credential;
+
+                        if (errorMessage == "The password is invalid or the user does not have a password.") {
+                            swal({
+                                title: "Error",
+                                text: "Using Google or Facebook sign cannot change password!",
+                                icon: "error",
+                            });
+                        }
+
+                    });
+                }
             });
+
+
 
             $("#logout").click(function(event) {
 
@@ -207,6 +301,9 @@
         });
 
         function initApp() {
+            var ref = firebase.database().ref('user');
+
+
             //check user keep in cookie
             // Listening for auth state changes.
             // [START authstatelistener]
@@ -214,34 +311,36 @@
 
                 if (user) {
                     // User is signed in.
-                    var user = firebase.auth().currentUser;
-                    var name, email, photoUrl;
-
-                    if (user != null) {
-                        name = user.displayName;
-                        email = user.email;
-                        photoUrl = user.photoURL;
-                        emailVerified = user.emailVerified;
-                        uid = user.uid; // The user's ID, unique to the Firebase project. Do NOT use
-                        // this value to authenticate with your backend server, if
-                        // you have one. Use User.getToken() instead.
-                        if (user.photoURL == null) {
-                            user.updateProfile({
-                                photoURL: "https://image.shutterstock.com/image-vector/vector-man-profile-icon-260nw-570414868.jpg"
-                            })
-                            photoUrl = user.photoURL;
-                        }
-
-                        $('#email_user').html(email);
-                        $('#userName').html(name);
-                        $('#userImg').attr("src", photoUrl);
-                    }
+                    updateView(user);
                 } else {
                     window.location.href = "WebAssignment.html";
                 }
             });
         }
         // [END authstatelistener]
+
+        function updateView(user) {
+            var name, email, photoUrl;
+
+            if (user != null) {
+                name = user.displayName;
+                email = user.email;
+                photoUrl = user.photoURL;
+                var uid = user.uid; // The user's ID, unique to the Firebase project. Do NOT use
+                // this value to authenticate with your backend server, if
+                // you have one. Use User.getToken() instead.
+                if (user.photoURL == null) {
+                    user.updateProfile({
+                        photoURL: "https://image.shutterstock.com/image-vector/vector-man-profile-icon-260nw-570414868.jpg"
+                    })
+                    photoUrl = user.photoURL;
+                }
+
+                $('#email_user').html(email);
+                $('#userName').html(name);
+                $('#userImg').attr("src", photoUrl);
+            }
+        }
 
         function logout() {
 
@@ -266,10 +365,10 @@
             });
         }
 
-        function updateUserName(user, name, photoUrl) {
+        function updateUserName(user, name, photoURL) {
             user.updateProfile({
                 displayName: name,
-                photoURL: photoUrl
+                photoURL: photoURL
             }).then(function() {
                 // Update successful.
                 console.log(user.displayName);
@@ -279,15 +378,81 @@
             });
         }
 
-        function updataUserdb(uid, userName, email) {
-            var database = firebase.database().ref('user')
-            var updateUserdb = database.push();
-            updateUserdb.set({
+        function updataUserdbs(uid, name, email, photoURL) {
+            var newData = {
                 uid: uid,
-                name: userName,
-                email: email
+                name: name,
+                email: email,
+                photoURl: photoURL
+            }
+            var database = firebase.database().ref('user/' + uid).set(newData, function(error) {
+                window.location.href = "WebAssignment.html";
             });
         }
+
+        function uploadfile(selectedfile, user, database) {
+            var metadata = {
+                contentType: 'image/jpeg',
+            };
+
+            var fileName = selectedfile.name;
+            var storageRef = firebase.storage().ref('userProfile/' + user.uid + '/' + fileName);
+            var uploadTask = storageRef.put(selectedfile, metadata);
+
+            // Listen for state changes, errors, and completion of the upload.
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+                function(snapshot) {
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log('Upload is paused');
+                            break;
+                        case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log('Upload is running');
+                            break;
+                    }
+                },
+                function(error) {
+
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                        case 'storage/unauthorized':
+                            // User doesn't have permission to access the object
+                            break;
+
+                        case 'storage/canceled':
+                            // User canceled the upload
+                            break;
+
+                        case 'storage/unknown':
+                            // Unknown error occurred, inspect error.serverResponse
+                            break;
+                    }
+                },
+                function() {
+                    // Upload completed successfully, now we can get the download URL
+                    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                        user.updateProfile({
+                            photoURL: downloadURL
+                        }).then(function() {
+                            // Update successful.
+                            console.log(user.photoURL);
+                        }).catch(function(error) {
+                            // An error happened.
+                        });
+
+                        update = database.update({
+                            photoURL: downloadURL,
+                        },function(error){
+                             window.location.href = "userprofile.html";
+                        });
+                    });
+                });
+        }
+
     </script>
 
 
