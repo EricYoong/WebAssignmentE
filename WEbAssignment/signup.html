@@ -46,12 +46,7 @@
                                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                                 <label for="inputPassword">Password</label>
                             </div>
-
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Remember password</label>
-                            </div>
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign UP</button>
+                            <button class="btn btn-lg btn-primary btn-block text- uppercase" type="submit">Sign UP</button>
                             <p>Already have an account? <a href="signin.html">Sign in</a></p>
                             <p>Don't want to sign up? <a href="WebAssignment.html">Click Here</a></p>
                             <hr class="my-4">
@@ -65,6 +60,8 @@
         </div>
         <div id="response"></div>
     </div>
+
+    <div></div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 
@@ -107,21 +104,20 @@
                 // [START createwithemail]
                 firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
                     var user = firebase.auth().currentUser;
-
                     // Register successful
                     updateUserName(user, name, "https://image.shutterstock.com/image-vector/vector-man-profile-icon-260nw-570414868.jpg");
-                    updataUserdb(user.uid, name, email);
+
+                    updataUserdbs(user.uid, name, email);
+
+                    $("#inputName").val("");
+                    $("#inputEmail").val("");
+                    $("#inputPassword").val("");
 
                     swal({
                         title: "Success",
                         text: "You successful SignUp!",
                         icon: "success",
                     });
-
-                    $("#inputName").val("");
-                    $("#inputEmail").val("");
-                    $("#inputPassword").val("");
-
 
                 }).catch(function(error) {
                     // Handle Errors here.
@@ -168,7 +164,7 @@
                                 var childData = childSnapshot.val();
                                 // ...
                                 if (childData.email != user.email) {
-                                    updataUserdb(user.uid, user.displayName, user.email);
+                                    updataUserdbs(user.uid, user.displayName, user.email);
                                 }
                             });
                         });
@@ -206,7 +202,7 @@
                                 var childData = childSnapshot.val();
                                 // ...
                                 if (childData.email != user.email) {
-                                    updataUserdb(user.uid, user.displayName, user.email);
+                                    updataUserdbs(user.uid, user.displayName, user.email);
                                 }
                             });
                         });
@@ -240,8 +236,8 @@
             });
         }
 
-        function updataUserdb(uid, userName, email) {
-            var database = firebase.database().ref('user')
+        function updataUserdbs(uid, userName, email) {
+            var database = firebase.database().ref('user');
             var updateUserdb = database.push();
             updateUserdb.set({
                 uid: uid,
@@ -256,16 +252,13 @@
             // [START authstatelistener]
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
-                    // User is signed in.
-                    //                    if (user.displayName == null || user.photoURL == null)
-                    //                        window.location.href = "WebAssignment.html";
-                    //                    else
-                    //                        window.location.href = "WebAssignment.html";
+                    //                    // User is signed up .
+                    if (user.displayName == null || user.photoURL == null) window.location.href = "WebAssignment.html";
+                    else window.location.href = "WebAssignment.html";
                 }
             });
             // [END authstatelistener]
         }
-
     </script>
 
 

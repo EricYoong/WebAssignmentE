@@ -15,10 +15,6 @@
       line-height: 1.75;
   }
 
-  #response .alert {
-      z-index: 800;
-  }
-
   .text-primary {
       color: #fed136 !important;
   }
@@ -185,7 +181,7 @@
   /*navbar*/
 
   #mainNav {
-      background-color: #212529;
+      background-color: grey;
   }
 
   #mainNav .navbar-toggler {

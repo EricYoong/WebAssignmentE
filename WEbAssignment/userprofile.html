@@ -64,12 +64,11 @@
                         <table class="table table-stripped table-bordered">
 
                             <tbody>
-
                                 <tr>
-
                                     <td class="info"><b>Username:</b></td>
 
-                                    <td id="userName"></td>
+                                    <td id="userName"><span id="curName"></span><br/><input type="text" id="newName"></td>
+
 
                                 </tr>
                                 <tr>
@@ -120,11 +119,11 @@
             </div>
             <hr>
         </div>
-
     </section>
 
+
     <!--    include firebase-->
-    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
     <script src="js/firebase.js"></script>
 
     <!--    jquery and jquery easing animation-->
@@ -135,7 +134,6 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
-
     </script>
 
 
@@ -166,15 +164,16 @@
                 event.preventDefault();
 
                 var user = firebase.auth().currentUser;
+                var name = $('#newName').val();
                 var email_chg = $('#newEmail').val();
                 var newPass = $('#newPassword').val();
                 var conPass = $('#passwordCon').val();
 
-                if ($('currPassword').val() != null) {
-                    firebase.auth().currentUser.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(firebase.auth().currentUser.email, $('currPassword').val())).then(function() {
-                        if (newPass == conPass) {}
-                    }).catch(function(error) {});
-                }
+                console.log(name);
+                console.log(email_chg);
+                console.log(newPass);
+                console.log(conPass);
+
 
             });
 
@@ -248,8 +247,6 @@
 
             firebase.auth().signOut().then(function() {
                 // Sign-out successful.
-                signedOutProfile();
-
                 swal({
                     title: "Success",
                     text: "You successful logout!",
@@ -269,6 +266,28 @@
             });
         }
 
+        function updateUserName(user, name, photoUrl) {
+            user.updateProfile({
+                displayName: name,
+                photoURL: photoUrl
+            }).then(function() {
+                // Update successful.
+                console.log(user.displayName);
+                console.log(user.photoURL);
+            }).catch(function(error) {
+                // An error happened.
+            });
+        }
+
+        function updataUserdb(uid, userName, email) {
+            var database = firebase.database().ref('user')
+            var updateUserdb = database.push();
+            updateUserdb.set({
+                uid: uid,
+                name: userName,
+                email: email
+            });
+        }
     </script>
 
 
