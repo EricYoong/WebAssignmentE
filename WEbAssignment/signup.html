@@ -289,25 +289,6 @@
             });
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        function updataUserdbs2(uid, name, email, photoURL, typeUser) {
-            var newData = {
-                uid: uid,
-                name: name,
-                email: email,
-                photoURL: photoURL,
-                typeUser: typeUser
-            }
-            var database = firebase.database().ref('user/' + uid).set(newData, function(error) {
-                window.location.href = "verification.html";
-            });
-        }
-
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
         function initApp() {
             //check user keep in cookie
             // Listening for auth state changes.
