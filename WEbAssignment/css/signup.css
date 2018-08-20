@@ -128,3 +128,10 @@ p{
 .fblogo {
     margin-right: 15px;
 }
+
+.ver{
+    background-image: url(../images/ver.jpg);
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+}
