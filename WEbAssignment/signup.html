@@ -109,7 +109,7 @@
 
                     user.sendEmailVerification().then(function() {
                         // Email sent.
-                        updataUserdbs2(user.uid, name, email, user.photoURL, "normal");
+                        updataUserdbs(user.uid, name, email, user.photoURL, "normal");
                     }).catch(function(error) {
                         // Handle Errors here.
                         var errorCode = error.code;
@@ -120,7 +120,6 @@
                             text: errorMessage,
                             icon: "error",
                         });
-
                     });
 
                     $("#inputName").val("");
@@ -290,19 +289,6 @@
             });
         }
 
-        function updataUserdbs2(uid, name, email, photoURL, typeUser) {
-            var newData = {
-                uid: uid,
-                name: name,
-                email: email,
-                photoURL: photoURL,
-                typeUser: typeUser
-            }
-            var database = firebase.database().ref('user/' + uid).set(newData, function(error) {
-                window.location.href = "confirmation.html";
-            });
-        }
-
         function initApp() {
             //check user keep in cookie
             // Listening for auth state changes.
@@ -315,7 +301,6 @@
             });
             // [END authstatelistener]
         }
-
     </script>
 
 
