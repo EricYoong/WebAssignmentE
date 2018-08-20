@@ -280,7 +280,7 @@
                 typeUser: typeUser
             }
             var database = firebase.database().ref('user/' + uid).set(newData, function(error) {
-                window.location.href = "confirmation.html";
+                window.location.href = "verification.html";
             });
         }
 
