@@ -107,7 +107,7 @@
                     // Register successful
                     updateUserName(user, name, "https://image.shutterstock.com/image-vector/vector-man-profile-icon-260nw-570414868.jpg");
 
-                    updataUserdbs(user.uid, name, email);
+                    updataUserdbs(user.uid, name, email, user.photoURL);
 
                     $("#inputName").val("");
                     $("#inputEmail").val("");
@@ -159,14 +159,18 @@
 
                     ref.once('value')
                         .then(function(snapshot) {
-                            snapshot.forEach(function(childSnapshot) {
-                                var childKey = childSnapshot.key;
-                                var childData = childSnapshot.val();
-                                // ...
-                                if (childData.email != user.email) {
-                                    updataUserdbs(user.uid, user.displayName, user.email);
-                                }
-                            });
+                            if (snapshot.val() == null) {
+                                updataUserdbs(user.uid, user.displayName, user.email, user.photoURL);
+                            } else {
+                                snapshot.forEach(function(childSnapshot) {
+                                    var childKey = childSnapshot.key;
+                                    var childData = childSnapshot.val();
+                                    // ...
+                                    if (childData.email != user.email) {
+                                        updataUserdbs(user.uid, user.displayName, user.email, user.photoURL);
+                                    }
+                                });
+                            }
                         });
                 }).catch(function(error) {
                     // Handle Errors here.
@@ -197,14 +201,18 @@
 
                     ref.once('value')
                         .then(function(snapshot) {
-                            snapshot.forEach(function(childSnapshot) {
-                                var childKey = childSnapshot.key;
-                                var childData = childSnapshot.val();
-                                // ...
-                                if (childData.email != user.email) {
-                                    updataUserdbs(user.uid, user.displayName, user.email);
-                                }
-                            });
+                            if (snapshot.val() == null) {
+                                updataUserdbs(user.uid, user.displayName, user.email, user.photoURL);
+                            } else {
+                                snapshot.forEach(function(childSnapshot) {
+                                    var childKey = childSnapshot.key;
+                                    var childData = childSnapshot.val();
+                                    // ...
+                                    if (childData.email != user.email) {
+                                        updataUserdbs(user.uid, user.displayName, user.email, user.photoURL);
+                                    }
+                                });
+                            }
                         });
                 }).catch(function(error) {
                     // Handle Errors here.
@@ -236,17 +244,15 @@
             });
         }
 
-        function updataUserdbs(uid, name, email) {
-            var database = firebase.database().ref('user');
+        function updataUserdbs(uid, name, email, photoURL) {
             var newData = {
                 uid: uid,
                 name: name,
-                email: email
+                email: email,
+                photoURl: photoURL
             }
-            var updateUserdb = database.push();
-            updateUserdb.set(newData, function(error) {
+            var database = firebase.database().ref('user/' + uid).set(newData, function(error) {
                 window.location.href = "WebAssignment.html";
-
             });
         }
 
