@@ -236,13 +236,17 @@
             });
         }
 
-        function updataUserdbs(uid, userName, email) {
+        function updataUserdbs(uid, name, email) {
             var database = firebase.database().ref('user');
-            var updateUserdb = database.push();
-            updateUserdb.set({
+            var newData = {
                 uid: uid,
-                name: userName,
+                name: name,
                 email: email
+            }
+            var updateUserdb = database.push();
+            updateUserdb.set(newData, function(error) {
+                window.location.href = "WebAssignment.html";
+
             });
         }
 
@@ -252,9 +256,8 @@
             // [START authstatelistener]
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
-                    //                    // User is signed up .
-                    if (user.displayName == null || user.photoURL == null) window.location.href = "WebAssignment.html";
-                    else window.location.href = "WebAssignment.html";
+                    // User is signed up .
+                    //                   window.location.href = "WebAssignment.html";
                 }
             });
             // [END authstatelistener]
