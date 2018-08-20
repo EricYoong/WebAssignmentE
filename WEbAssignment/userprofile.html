@@ -76,23 +76,23 @@
                                     <td class="info"><b>Email:</b></td>
 
                                     <td>
-                                        <p id="email_user"></p><br/><input class="form-control" type="email" name="E-mail" id="newEmail" placeholder="Click to edit!">
+                                        <p id="email_user"></p>
                                     </td>
                                 </tr>
 
-                                <tr>
+                                <tr class="password">
                                     <td class="info"><b>Current password:</b></td>
 
                                     <td><input class="form-control" type="password" name="currentPassword" id="currPassword" placeholder="Click to edit!"></td>
                                 </tr>
 
-                                <tr>
+                                <tr class="password">
                                     <td class="info"><b>New Password:</b></td>
 
                                     <td> <input class="form-control" type="password" name="password" id="newPassword" placeholder="Click to edit!"></td>
                                 </tr>
 
-                                <tr>
+                                <tr class="password">
                                     <td class="info"><b>Confirm password:</b></td>
 
                                     <td><input class="form-control" type="password" name="confirmPassword" id="passwordCon" placeholder="Click to edit!"></td>
@@ -155,6 +155,7 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
+
     </script>
 
 
@@ -178,260 +179,280 @@
 
     <script>
         $(function() {
-                    var img;
+            var img;
 
-                    initApp();
+            initApp();
 
-                    $("input[type=file]").click(function() {
-                        $(this).val("");
-                    });
+            $("input[type=file]").click(function() {
+                $(this).val("");
+            });
 
-                    $("input[type=file]").change(function(event) {
-                        img = event.target.files[0];
-                    });
+            $("input[type=file]").change(function(event) {
+                img = event.target.files[0];
+            });
 
-                    $("#editProfile").submit(function(event) {
+            $("#editProfile").submit(function(event) {
 
-                            event.preventDefault();
+                event.preventDefault();
+                var user = firebase.auth().currentUser;
+                var credential;
+                var database = firebase.database().ref('user/' + user.uid);
+                var update;
+                var name = $('#newName').val();
+                var curPass = $('#currPassword').val();
+                var newPass = $('#newPassword').val();
+                var conPass = $('#passwordCon').val();
 
-                            var user = firebase.auth().currentUser;
-                            var database = firebase.database().ref('user/' + user.uid);
-                            var update;
-                            var name = $('#newName').val();
-                            var email_chg = $('#newEmail').val();
-                            var curPass = $('#currPassword').val();
-                            var newPass = $('#newPassword').val();
-                            var conPass = $('#passwordCon').val();
-
-                            if (img != null) {
-                                uploadfile(img, user, database);
-                            }
-
-                            if (name != null && name !== "" && name !== " ") {
-                                user.updateProfile({
-                                    displayName: name
-                                }).then(function() {
-                                    // Update successful.
-                                    console.log(user.displayName);
-                                }).catch(function(error) {
-                                    // An error happened.
-                                });
-
-                                update = database.update({
-                                    name: name
-                                });
-
-                            }
-
-                            var credential;
-
-                            // Prompt the user to re-provide their sign-in credentials
-
-                            user.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
-                                // User re-authenticated.
-                                if (email_chg != null && email_chg !== "" && email_chg !== " ") {
-                                    user.updateEmail(email_chg).then(function() {
-                                        // Update successful.
-                                        console.log(user.email);
-                                    }).catch(function(error) {
-                                        // An error happened.
-                                    });
-                                }
-                            }).catch(function(error) {
-                                // An error happened.
-                            });
-                            user.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(firebase.auth().currentUser.email, curPass)).then(function() {
-                                    if (newPass === conPass && newPass != null) {
-                                        user.updatePassword(newPassword).then(function() {
-                                            // Update successful.
-                                        }).catch(function(error) {
-                                            // An error happened.
-                                        });
-                                    } else {
-
-                                    }
-                                }).catch(function(error) {
-                                    // An error happened.
-                                });
-                            });
-
-                        $("#logout").click(function(event) {
-
-                            event.preventDefault();
-
-                            firebase.auth().signOut().then(function() {
-                                // Sign-out successful.
-                                signedOutProfile();
-
-                                swal({
-                                    title: "Success",
-                                    text: "You successful logout!",
-                                    icon: "success",
-                                });
-
-                            }).catch(function(error) {
-
-                                var errorCode = error.code;
-                                var errorMessage = error.message;
-                                // An error happened.
-                                swal({
-                                    title: "Error",
-                                    text: errorMessage,
-                                    icon: "Error",
-                                });
-
-                            });
-                        });
-                    });
-
-                function initApp() {
-                    //check user keep in cookie
-                    // Listening for auth state changes.
-                    // [START authstatelistener]
-                    firebase.auth().onAuthStateChanged(function(user) {
-
-                        if (user) {
-                            // User is signed in.
-                            updateView(user);
-                        } else {
-                            window.location.href = "WebAssignment.html";
-                        }
-                    });
-                }
-                // [END authstatelistener]
-
-                function updateView(user) {
-                    var name, email, photoUrl;
-
-                    if (user != null) {
-                        name = user.displayName;
-                        email = user.email;
-                        photoUrl = user.photoURL;
-                        var uid = user.uid; // The user's ID, unique to the Firebase project. Do NOT use
-                        // this value to authenticate with your backend server, if
-                        // you have one. Use User.getToken() instead.
-                        if (user.photoURL == null) {
-                            user.updateProfile({
-                                photoURL: "https://image.shutterstock.com/image-vector/vector-man-profile-icon-260nw-570414868.jpg"
-                            })
-                            photoUrl = user.photoURL;
-                        }
-
-                        $('#email_user').html(email);
-                        $('#userName').html(name);
-                        $('#userImg').attr("src", photoUrl);
-                    }
+                if (img != null) {
+                    uploadfile(img, user, database);
                 }
 
-                function logout() {
-
-                    firebase.auth().signOut().then(function() {
-                        // Sign-out successful.
-                        swal({
-                            title: "Success",
-                            text: "You successful logout!",
-                            icon: "success",
-                        });
+                if (name != null && name !== "" && name !== " ") {
+                    user.updateProfile({
+                        displayName: name
                     }).catch(function(error) {
-
+                        // An error happened.
+                        // Handle Errors here.
                         var errorCode = error.code;
                         var errorMessage = error.message;
-                        // An error happened.
+                        // [START_EXCLUDE]
                         swal({
                             title: "Error",
                             text: errorMessage,
                             icon: "error",
                         });
-
                     });
-                }
 
-                function updateUserName(user, name, photoUrl) {
-                    user.updateProfile({
-                        displayName: name,
-                        photoURL: photoUrl
-                    }).then(function() {
-                        // Update successful.
-                        console.log(user.displayName);
-                        console.log(user.photoURL);
+                    update = database.update({
+                        name: name
+                    });
+
+                }
+                // Prompt the user to re-provide their sign-in credentials
+
+                if (newPass === conPass && newPass != null && newPass != "" && newPass != " ") {
+                    user.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(firebase.auth().currentUser.email, curPass)).then(function() {
+
+                        user.updatePassword(newPassword).catch(function(error) {
+                            // An error happened.
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            // The email of the user's account used.
+                            var email = error.email;
+                            // The firebase.auth.AuthCredential type that was used.
+                            var credential = error.credential;
+                            swal({
+                                title: "Error",
+                                text: errorMessage,
+                                icon: "error",
+                            });
+
+                        });
                     }).catch(function(error) {
                         // An error happened.
-                    });
-                }
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        // The email of the user's account used.
+                        var email = error.email;
+                        // The firebase.auth.AuthCredential type that was used.
+                        var credential = error.credential;
 
-                function updataUserdbs(uid, name, email, photoURL) {
-                    var newData = {
-                        uid: uid,
-                        name: name,
-                        email: email,
-                        photoURl: photoURL
-                    }
-                    var database = firebase.database().ref('user/' + uid).set(newData, function(error) {
-                        window.location.href = "WebAssignment.html";
-                    });
-                }
-
-                function uploadfile(selectedfile, user, database) {
-                    var metadata = {
-                        contentType: 'image/jpeg',
-                    };
-
-                    var fileName = selectedfile.name;
-                    var storageRef = firebase.storage().ref('userProfile/' + user.uid + '/' + fileName);
-                    var uploadTask = storageRef.put(selectedfile, metadata);
-
-                    // Listen for state changes, errors, and completion of the upload.
-                    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-                        function(snapshot) {
-                            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                            console.log('Upload is ' + progress + '% done');
-                            switch (snapshot.state) {
-                                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                                    console.log('Upload is paused');
-                                    break;
-                                case firebase.storage.TaskState.RUNNING: // or 'running'
-                                    console.log('Upload is running');
-                                    break;
-                            }
-                        },
-                        function(error) {
-
-                            // A full list of error codes is available at
-                            // https://firebase.google.com/docs/storage/web/handle-errors
-                            switch (error.code) {
-                                case 'storage/unauthorized':
-                                    // User doesn't have permission to access the object
-                                    break;
-
-                                case 'storage/canceled':
-                                    // User canceled the upload
-                                    break;
-
-                                case 'storage/unknown':
-                                    // Unknown error occurred, inspect error.serverResponse
-                                    break;
-                            }
-                        },
-                        function() {
-                            // Upload completed successfully, now we can get the download URL
-                            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                                user.updateProfile({
-                                    photoURL: downloadURL
-                                }).then(function() {
-                                    // Update successful.
-                                    console.log(user.photoURL);
-                                }).catch(function(error) {
-                                    // An error happened.
-                                });
-
-                                update = database.update({
-                                    photoURL: downloadURL,
-                                });
-                                console.log('File available at', downloadURL);
+                        if (errorMessage == "The password is invalid or the user does not have a password.") {
+                            swal({
+                                title: "Error",
+                                text: "Using Google or Facebook sign cannot change password!",
+                                icon: "error",
                             });
-                        });
+                        }
+
+                    });
                 }
+            });
+
+
+
+            $("#logout").click(function(event) {
+
+                event.preventDefault();
+
+                firebase.auth().signOut().then(function() {
+                    // Sign-out successful.
+                    signedOutProfile();
+
+                    swal({
+                        title: "Success",
+                        text: "You successful logout!",
+                        icon: "success",
+                    });
+
+                }).catch(function(error) {
+
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // An error happened.
+                    swal({
+                        title: "Error",
+                        text: errorMessage,
+                        icon: "Error",
+                    });
+
+                });
+            });
+        });
+
+        function initApp() {
+            var ref = firebase.database().ref('user');
+
+
+            //check user keep in cookie
+            // Listening for auth state changes.
+            // [START authstatelistener]
+            firebase.auth().onAuthStateChanged(function(user) {
+
+                if (user) {
+                    // User is signed in.
+                    updateView(user);
+                } else {
+                    window.location.href = "WebAssignment.html";
+                }
+            });
+        }
+        // [END authstatelistener]
+
+        function updateView(user) {
+            var name, email, photoUrl;
+
+            if (user != null) {
+                name = user.displayName;
+                email = user.email;
+                photoUrl = user.photoURL;
+                var uid = user.uid; // The user's ID, unique to the Firebase project. Do NOT use
+                // this value to authenticate with your backend server, if
+                // you have one. Use User.getToken() instead.
+                if (user.photoURL == null) {
+                    user.updateProfile({
+                        photoURL: "https://image.shutterstock.com/image-vector/vector-man-profile-icon-260nw-570414868.jpg"
+                    })
+                    photoUrl = user.photoURL;
+                }
+
+                $('#email_user').html(email);
+                $('#userName').html(name);
+                $('#userImg').attr("src", photoUrl);
+            }
+        }
+
+        function logout() {
+
+            firebase.auth().signOut().then(function() {
+                // Sign-out successful.
+                swal({
+                    title: "Success",
+                    text: "You successful logout!",
+                    icon: "success",
+                });
+            }).catch(function(error) {
+
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // An error happened.
+                swal({
+                    title: "Error",
+                    text: errorMessage,
+                    icon: "error",
+                });
+
+            });
+        }
+
+        function updateUserName(user, name, photoURL) {
+            user.updateProfile({
+                displayName: name,
+                photoURL: photoURL
+            }).then(function() {
+                // Update successful.
+                console.log(user.displayName);
+                console.log(user.photoURL);
+            }).catch(function(error) {
+                // An error happened.
+            });
+        }
+
+        function updataUserdbs(uid, name, email, photoURL) {
+            var newData = {
+                uid: uid,
+                name: name,
+                email: email,
+                photoURl: photoURL
+            }
+            var database = firebase.database().ref('user/' + uid).set(newData, function(error) {
+                window.location.href = "WebAssignment.html";
+            });
+        }
+
+        function uploadfile(selectedfile, user, database) {
+            var metadata = {
+                contentType: 'image/jpeg',
+            };
+
+            var fileName = selectedfile.name;
+            var storageRef = firebase.storage().ref('userProfile/' + user.uid + '/' + fileName);
+            var uploadTask = storageRef.put(selectedfile, metadata);
+
+            // Listen for state changes, errors, and completion of the upload.
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+                function(snapshot) {
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log('Upload is paused');
+                            break;
+                        case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log('Upload is running');
+                            break;
+                    }
+                },
+                function(error) {
+
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                        case 'storage/unauthorized':
+                            // User doesn't have permission to access the object
+                            break;
+
+                        case 'storage/canceled':
+                            // User canceled the upload
+                            break;
+
+                        case 'storage/unknown':
+                            // Unknown error occurred, inspect error.serverResponse
+                            break;
+                    }
+                },
+                function() {
+                    // Upload completed successfully, now we can get the download URL
+                    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                        user.updateProfile({
+                            photoURL: downloadURL
+                        }).then(function() {
+                            // Update successful.
+                            console.log(user.photoURL);
+                        }).catch(function(error) {
+                            // An error happened.
+                        });
+
+                        update = database.update({
+                            photoURL: downloadURL,
+                        },function(error){
+                             window.location.href = "userprofile.html";
+                        });
+                    });
+                });
+        }
+
     </script>
 
 

@@ -107,7 +107,21 @@
                     // Register successful
                     updateUserName(user, name, "https://image.shutterstock.com/image-vector/vector-man-profile-icon-260nw-570414868.jpg");
 
-                    updataUserdbs(user.uid, name, email, user.photoURL);
+                    user.sendEmailVerification().then(function() {
+                        // Email sent.
+                        updataUserdbs2(user.uid, name, email, user.photoURL, "normal");
+                    }).catch(function(error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        // [START_EXCLUDE]
+                        swal({
+                            title: "Error",
+                            text: errorMessage,
+                            icon: "error",
+                        });
+
+                    });
 
                     $("#inputName").val("");
                     $("#inputEmail").val("");
@@ -167,7 +181,7 @@
                                     var childData = childSnapshot.val();
                                     // ...
                                     if (childData.email != user.email) {
-                                        updataUserdbs(user.uid, user.displayName, user.email, user.photoURL);
+                                        updataUserdbs(user.uid, user.displayName, user.email, user.photoURL, "google");
                                     }
                                 });
                             }
@@ -209,7 +223,7 @@
                                     var childData = childSnapshot.val();
                                     // ...
                                     if (childData.email != user.email) {
-                                        updataUserdbs(user.uid, user.displayName, user.email, user.photoURL);
+                                        updataUserdbs(user.uid, user.displayName, user.email, user.photoURL, "facebook");
                                     }
                                 });
                             }
@@ -244,15 +258,29 @@
             });
         }
 
-        function updataUserdbs(uid, name, email, photoURL) {
+        function updataUserdbs(uid, name, email, photoURL, typeUser) {
             var newData = {
                 uid: uid,
                 name: name,
                 email: email,
-                photoURl: photoURL
+                photoURL: photoURL,
+                typeUser: typeUser
             }
             var database = firebase.database().ref('user/' + uid).set(newData, function(error) {
                 window.location.href = "WebAssignment.html";
+            });
+        }
+
+        function updataUserdbs2(uid, name, email, photoURL, typeUser) {
+            var newData = {
+                uid: uid,
+                name: name,
+                email: email,
+                photoURL: photoURL,
+                typeUser: typeUser
+            }
+            var database = firebase.database().ref('user/' + uid).set(newData, function(error) {
+                window.location.href = "confirmation.html";
             });
         }
 
