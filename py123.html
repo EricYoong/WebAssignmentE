@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+        body {
+            padding-top: 5rem;
+        }
+
+        .starter-template {
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <form method="POST" id="target">
+        <h1>Learning Multiplication</h1>
+        <table border="1">
+            <tr>
+                <td>Question</td>
+                <td id="displayData"></td>
+            </tr>
+            <tr>
+                <td>Enter your answer:</td>
+                <td><input type="number" name="answer" id="answer" required></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Check Answer" />
+                    <input type="reset" value="New Question" id="newq" />
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div><p>score:<span id="score"></span> </p></div>
+        <br />
+        <div id="displayTable"></div>
+    </form>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-json/2.6.0/jquery.json.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+    <script type="text/javascript">
+        var num1, num2, result, ques;
+        var obj;
+        var jsonText = "";
+        var score=0;
+
+        $(function() {
+            num1 = Math.floor((Math.random() * 10) + 1);
+            num2 = Math.floor((Math.random() * 50) + 1);
+            ques = "How much is " + num1 + " times " + num2 + " ?";
+
+$('#score').html(score);
+
+            $('#displayData').html(ques);
+
+            $('#target').submit(function(e) {
+                e.preventDefault();
+                var checkAns = false;
+                var userAns = "";
+
+                userAns = $('#answer').val();
+
+                if ((num1 * num2) == userAns) {
+                    //                    obj.push(new createobj(ques, userAns, "very good"));
+                    
+                    score++;
+                    if (jsonText == "")
+                        jsonText += '{"question":"' + ques + '","answer":' + userAns + ',"message":"correct","score":'+score+'}'
+                    else
+                        jsonText += ',{"question":"' + ques + '","answer":' + userAns + ',"message":"correct","score":'+score+'}'
+                    
+                } else {
+                    //                    obj.push(new createobj(ques, userAns, "incorrect"));
+                    
+                    score--;
+                    if (jsonText == "")
+                        jsonText += '{"question":"' + ques + '","answer":' + userAns + ',"message":"incorrect","score":'+score+'}'
+                    else
+                        jsonText += ',{"question":"' + ques + '","answer":' + userAns + ',"message":"incorrect","score":'+score+'}'
+                    
+                }
+                
+                $('#score').html(score);
+                var jsonText2 = '[' + jsonText + ']';
+
+                if (typeof(Storage) != "undefined") {
+                    localStorage.setItem("content", jsonText2)
+
+                    obj = JSON.parse(localStorage.getItem("content"));
+                    displayTable();
+
+                }
+
+            });
+
+            $('input:reset').click(function() {
+                num1 = Math.floor((Math.random() * 10) + 1);
+                num2 = Math.floor((Math.random() * 50) + 1);
+                ques = "How much is " + num1 + " times " + num2 + " ?";
+                $('#displayData').html(ques);
+            });
+
+            //            var txt='{"employees":['+'{"firstName":"John","lastName":"Doe"},'+'{"firstName":"Anna","lastName":"Smith"},'+'{"firstName":"Peter","lastName":"Jones"}]}';
+            //            console.log(txt);
+
+
+
+        });
+
+        function displayTable() {
+            var displayData = "";
+
+            displayData += '<table border="1"><tr><td>Question</td><td>Answer</td><td>Message</td><td>Score</td></tr>'
+            for (var i = 0; i < obj.length; i++) {
+                displayData += '<tr><td>' + obj[i].question + '</td><td>' + obj[i].answer + '</td><td>' + obj[i].message + '</td><td>' + obj[i].score + '</td></tr>';
+            }
+            displayData += '</table>';
+
+            $('#displayTable').html(displayData);
+
+            $('#displayTable tr:odd').css("background-color", "green");
+        }
+
+
+
+
+
+        function createobj(question, answer, message) {
+            this.question = question;
+            this.answer = answer;
+            this.message = message;
+        }
+    </script>
+
+
+</body>
+</html>
